@@ -140,3 +140,7 @@
 - Render（デプロイ先）
 - Neon（データベース）
 - （予定）Active Storage + Cloudflare R2（画像の保存）
+
+## 画面遷移図
+https://www.figma.com/design/EcViSYfp1p8aYuw1Ote3Xf/nutrition-counseling-pocket?node-id=0-1&t=hQKUsAsVBpFhwUEc-1
+
