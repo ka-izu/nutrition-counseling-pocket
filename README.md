@@ -144,3 +144,5 @@
 ## 画面遷移図
 https://www.figma.com/design/EcViSYfp1p8aYuw1Ote3Xf/nutrition-counseling-pocket?node-id=0-1&t=hQKUsAsVBpFhwUEc-1
 
+## ER図
+[![Image from Gyazo](https://i.gyazo.com/e5b0c2f1a08185009293fb4af818801e.png)](https://gyazo.com/e5b0c2f1a08185009293fb4af818801e)
