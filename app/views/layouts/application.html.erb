@@ -19,34 +19,9 @@
 
   <body data-theme="nutrition-pocket">
     <!-- ヘッダー -->
-    <!-- TODO: component化 -->
-    <header class="navbar bg-primary px-6 shadow-sm">
-      <div class="flex-1">
-        <span class="text-xl font-semibold text-primary-content">
-          栄養指導ポケット
-        </span>
-      </div>
-    </header>
-
+    <%= render 'shared/header' %>
     <%= yield %>
-
     <!-- フッター -->
-    <!-- TODO: component化 -->
-    <footer class="text-secondary mx-4 sm:mx-10 mt-5 border-t border-secondary/30 py-8 sm:mt-8">
-      <div class="flex flex-col-reverse items-center justify-between gap-y-4 px-0 sm:px-2 sm:flex-row">
-        <!-- 左側：コピーライト -->
-        <div class="text-sm text-secondary/70">
-          © <%= Time.current.year %> 栄養指導ポケット. All rights reserved.
-        </div>
-
-        <!-- 右側：リンク -->
-        <div class="flex gap-x-4 text-sm">
-          <%= link_to "利用規約", "#", class: "hover:text-secondary/70 transition-colors" %>
-          <%= link_to "プライバシーポリシー", "#", class: "hover:text-secondary/70 transition-colors" %>
-          <%= link_to "お問い合わせ", "#", class: "hover:text-secondary/70 transition-colors" %>
-        </div>
-      </div>
-    </footer>
-
+    <%= render 'shared/footer' %>
   </body>
 </html>

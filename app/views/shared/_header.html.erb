@@ -1,0 +1,23 @@
+<header class="navbar px-12 shadow-sm h-16 bg-white">
+  <!-- 左側：ロゴ＋サービス名 -->
+  <div class="flex-1">
+    <%= link_to root_path,
+      class: "flex items-center gap-3 hover:opacity-90 transition-opacity duration-200" do %>
+
+      <%= image_tag "logo.png",
+        alt: "栄養指導ポケット ロゴ",
+        class: "h-8 w-auto object-contain" %>
+      <span class="text-xl font-semibold text-primary">
+        栄養指導ポケット
+      </span>
+    <% end %>
+  </div>
+
+  <!-- 右側：ログインボタン -->
+  <div class="flex-none">
+    <%= link_to "#",
+      class: "btn px-6 rounded-full bg-primary text-primary-content hover:bg-primary/90 border-none" do %>
+      ログイン
+    <% end %>
+  </div>
+</header>
