@@ -1,2 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100..900&display=swap');
 @import "tailwindcss";
 @plugin "daisyui";
+
+@plugin "daisyui" {
+  themes: corporate --default, dark --prefersdark, cupcake;
+}
+
+@plugin "daisyui/theme" {
+  name: "nutrition-pocket";
+  default: true;
+  prefersdark: false;
+  color-scheme: "light";
+
+  /* Base */
+  --color-base-100: #F7F9F8;
+  --color-base-200: #EEF3F1;
+  --color-base-300: #DDE7E4;
+  --color-base-content: #2F4858;
+
+  /* Primary (メインカラー) */
+  --color-primary: #6BBFAE;
+  --color-primary-content: #ffffff;
+
+  /* Secondary（アクセント） */
+  --color-secondary: #2F4858;
+  --color-secondary-content: #ffffff;
+
+  /* Accent（補助アクセント） */
+  --color-accent: #6BBFAE;
+  --color-accent-content: #ffffff;
+
+  /* Neutral */
+  --color-neutral: #2F4858;
+  --color-neutral-content: #ffffff;
+
+  /* Status */
+  --color-info: #A7DAD0;
+  --color-info-content: #1F3D3A;
+
+  --color-success: #6BBFAE;
+  --color-success-content: #ffffff;
+
+  --color-warning: #F6C177;
+  --color-warning-content: #4A2F00;
+
+  --color-error: #E57373;
+  --color-error-content: #ffffff;
+
+  /* UI settings */
+  --radius-selector: 1rem;
+  --radius-field: 1rem;
+  --radius-box: 1.25rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
+
+/* フォント */
+@theme {
+  --font-sans: "Noto Sans", sans-serif;
+}
