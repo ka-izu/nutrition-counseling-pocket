@@ -1,4 +1,4 @@
-<header class="navbar px-12 shadow-sm h-16 bg-white">
+<header class="navbar px-12 shadow-sm h-16">
   <!-- 左側：ロゴ＋サービス名 -->
   <div class="flex-1">
     <%= link_to root_path,
@@ -15,9 +15,24 @@
 
   <!-- 右側：ログインボタン -->
   <div class="flex-none">
-    <%= link_to "#",
-      class: "btn px-6 rounded-full bg-primary text-primary-content hover:bg-primary/90 border-none" do %>
-      ログイン
-    <% end %>
+    <div class="dropdown dropdown-end">
+      <!-- トリガー：Heroicon -->
+      <div
+        tabindex="0"
+        role="button"
+        class="btn btn-ghost btn-circle hover:bg-transparent"
+      >
+        <%= render "shared/icons/user",
+          class: "h-6 w-6 text-primary" %>
+      </div>
+      <!-- Dropdown menu -->
+      <ul
+        tabindex="-1"
+        class="menu menu-sm dropdown-content bg-base-100 rounded-sm z-10 mt-3 w-52 p-2 shadow"
+      >
+        <li><a>新規ユーザー登録</a></li>
+        <li><a>ログイン</a></li>
+      </ul>
+    </div>
   </div>
 </header>
