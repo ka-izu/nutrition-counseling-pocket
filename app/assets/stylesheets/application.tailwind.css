@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap');
 @import "tailwindcss";
 @plugin "daisyui";
 
@@ -16,7 +16,7 @@
   --color-base-100: #F7F9F8;
   --color-base-200: #EEF3F1;
   --color-base-300: #DDE7E4;
-  --color-base-content: #2F4858;
+  --color-base-content: #2F3E46;
 
   /* Primary (メインカラー) */
   --color-primary: #6BBFAE;
@@ -49,8 +49,8 @@
 
   /* UI settings */
   --radius-selector: 1rem;
-  --radius-field: 1rem;
-  --radius-box: 1.25rem;
+  --radius-field: 0.5rem; /* menu item / input 系 */
+  --radius-box: 0.75rem; /* dropdown / card 系 */
   --size-selector: 0.25rem;
   --size-field: 0.25rem;
   --border: 1px;
@@ -60,5 +60,5 @@
 
 /* フォント */
 @theme {
-  --font-sans: "Noto Sans", sans-serif;
+  --font-sans: "Noto Sans JP", sans-serif;
 }
