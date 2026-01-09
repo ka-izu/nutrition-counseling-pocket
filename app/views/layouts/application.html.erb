@@ -21,19 +21,8 @@
     <!-- ヘッダー -->
     <%= render 'shared/header' %>
 
-    <!-- TODO: 要削除。FlashMessage確認用 -->
-    <% flash.each do |type, message| %>
-      <% daisy_type =
-        case type.to_sym
-        when :notice then "success"
-        when :alert  then "error"
-        else "info"
-        end
-      %>
-      <div role="alert" class="alert alert-<%= daisy_type %>">
-        <span><%= message %></span>
-      </div>
-    <% end %>
+    <!-- フラッシュメッセージ -->
+    <%= render 'shared/flash' %>
 
     <!-- TODO: 要削除。Devise動作確認用 -->
     <% if user_signed_in? %>
