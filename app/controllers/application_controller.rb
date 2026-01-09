@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   # Devise の Strong Parameters を拡張し、
   # サインアップ時に name パラメータを許可
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [ :name ])
   end
 
   # ユーザー登録（サインアップ）完了後のリダイレクト先を指定
