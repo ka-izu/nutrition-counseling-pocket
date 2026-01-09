@@ -62,3 +62,13 @@
 @theme {
   --font-sans: "Noto Sans JP", sans-serif;
 }
+
+.alert-success {
+  --alert-color: var(--color-success);
+  --alert-content-color: var(--color-success-content);
+}
+
+.alert-error {
+  --alert-color: var(--color-error);
+  --alert-content-color: var(--color-error-content);
+}
