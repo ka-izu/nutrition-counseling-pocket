@@ -22,16 +22,19 @@
         role="button"
         class="btn btn-ghost btn-circle hover:bg-transparent"
       >
-        <%= render "shared/icons/user",
-          class: "h-6 w-6 text-primary" %>
+        <%= render "shared/icons/user" %>
       </div>
       <!-- Dropdown menu -->
       <ul
         tabindex="-1"
         class="menu menu-sm dropdown-content bg-base-100 rounded-sm z-10 mt-3 w-52 p-2 shadow"
       >
-        <li><a>新規ユーザー登録</a></li>
-        <li><a>ログイン</a></li>
+        <li>
+          <%= link_to "新規ユーザー登録", new_user_registration_path, class: "text-sm py-3 px-4" %>
+        </li>
+        <li>
+          <%= link_to "ログイン", new_user_session_path, class: "text-sm py-3 px-4" %>
+        </li>
       </ul>
     </div>
   </div>

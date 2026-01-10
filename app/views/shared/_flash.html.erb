@@ -1,0 +1,46 @@
+<div class="toast toast-top toast-center z-50 top-20">
+  <% flash.each do |key, message| %>
+    <% config =
+      case key.to_sym
+      when :notice
+        { timeout: 3000, type: "success" }
+      when :alert
+        { timeout: 0, type: "error" }
+      else
+        { timeout: 3000, type: "info" }
+      end
+    %>
+
+    <div
+      role="alert"
+      data-controller="toast"
+      data-toast-timeout-value="<%= config[:timeout] %>"
+      class="
+        alert alert-<%= config[:type] %>
+        shadow-lg
+        transition-all duration-300
+        opacity-0 -translate-y-2
+        flex items-center justify-between gap-4
+      "
+    >
+      <span class="font-medium"><%= message %></span>
+
+      <% if config[:timeout] == 0 %>
+        <button
+          type="button"
+          data-action="click->toast#close"
+          class="
+            p-1 rounded-full
+            text-current
+            hover:bg-transparent
+            transition
+            cursor-pointer
+          "
+          aria-label="閉じる"
+        >
+          ✕
+        </button>
+      <% end %>
+    </div>
+  <% end %>
+</div>
