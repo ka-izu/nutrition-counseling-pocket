@@ -13,34 +13,6 @@
     <% end %>
   </div>
 
-  <%= link_to "#",
-    class: "
-      btn btn-ghost
-      border-0 shadow-none
-      hover:bg-transparent
-      hover:text-primary
-      focus:outline-none focus:ring-0
-      active:bg-transparent
-      flex items-center gap-2
-    " do %>
-    <%= render "shared/icons/book-open" %>
-    <span>指導ライブラリ</span>
-  <% end %>
-
-  <%= link_to "#",
-    class: "
-      btn btn-ghost
-      border-0 shadow-none
-      hover:bg-transparent
-      hover:text-primary
-      focus:outline-none focus:ring-0
-      active:bg-transparent
-      flex items-center gap-2
-    " do %>
-    <%= render "shared/icons/light-bulb" %>
-    <span>クイックアドバイス</span>
-  <% end %>
-
   <!-- 右側：ログインボタン -->
   <div class="flex-none">
     <div class="dropdown dropdown-end">
@@ -64,10 +36,10 @@
         class="menu menu-sm dropdown-content bg-base-100 rounded-sm z-10 mt-3 w-52 p-2 shadow"
       >
         <li>
-          <%= link_to "マイページ（準備中）", "#", class: "text-sm py-3 px-4" %>
+          <%= link_to "新規ユーザー登録", new_user_registration_path, class: "text-sm py-3 px-4" %>
         </li>
         <li>
-          <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "text-sm py-3 px-4" %>
+          <%= link_to "ログイン", new_user_session_path, class: "text-sm py-3 px-4" %>
         </li>
       </ul>
     </div>

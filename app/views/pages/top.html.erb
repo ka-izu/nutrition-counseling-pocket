@@ -1,103 +1,120 @@
 <div class="container mx-auto px-6 py-12 bg-base-100 text-secondary">
   <!-- HEROセクション -->
-  <section class="grid min-h-screen md:grid-cols-2 gap-10 items-center">
-    <div>
-      <h1 class="text-3xl font-bold leading-snug mb-6">
-        栄養指導の判断を支えて、<br />
-        <span class="text-primary">
-          本来注力すべきコミュニケーションに集中できる時間を
-        </span>
-      </h1>
+    <% if user_signed_in? %>
+      <div class="mt-10 rounded-box p-6">
+        <p class="text-sm text-secondary/70 mb-4">
+          お疲れさまです、<%= current_user.name %>さん。
+        </p>
 
-      <p class="text-gray-600 mb-8">
-        栄養指導ポケットは、限られた時間・限られた患者情報の中で
-        即時の判断を求められる調剤薬局の栄養士に向けた栄養指導支援ツールです。
-        自分専用のナレッジを整理・蓄積し、
-        患者の特性に応じたクイックアドバイスで、指導の場を支えます。
-      </p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <%= link_to "#", class: "btn btn-primary flex-1" do %>
+            指導資料・メモを確認する
+          <% end %>
 
-      <button class="btn btn-primary">
-        はじめてみる
-      </button>
-    </div>
-
-    <div class="flex justify-center">
-      <div class="mockup-browser border bg-base-200 w-full max-w-md">
-        <div class="mockup-browser-toolbar">
-          <div class="input">nutrition-pocket</div>
-        </div>
-        <div class="p-6 bg-base-100 text-center text-gray-400">
-          <%= image_tag "hero_mock.png",
-          alt: "栄養指導ポケット サービスイメージ",
-          class: "w-full h-auto rounded-md" %>
+          <%= link_to "#", class: "btn btn-outline flex-1" do %>
+            指導内容のヒントを確認する
+          <% end %>
         </div>
       </div>
-    </div>
-  </section>
+    <% else %>
+      <section class="grid min-h-screen md:grid-cols-2 gap-10 items-center">
+        <div>
+          <h1 class="text-3xl font-bold leading-snug mb-6">
+            栄養指導の判断を支えて、<br />
+            <span class="text-primary">
+              本来注力すべきコミュニケーションに集中できる時間を
+            </span>
+          </h1>
 
-  <div class="mt-16">
-    <h3 class="text-lg font-semibold mb-8">
-      こんな場面、ありませんか？
-    </h3>
-
-    <div class="grid sm:grid-cols-3 gap-6">
-      <div class="card bg-base-200/60">
-        <div class="card-body text-sm">
-          <p>
-            限られた時間の中で、患者さんの状況を整理しながら
-            アドバイス内容を整理するのが難しい・・・
+          <p class="text-gray-600 mb-8">
+            栄養指導ポケットは、限られた時間・限られた患者情報の中で
+            即時の判断を求められる調剤薬局の栄養士に向けた栄養指導支援ツールです。
+            自分専用のナレッジを整理・蓄積し、
+            患者の特性に応じたクイックアドバイスで、指導の場を支えます。
           </p>
+
+          <button class="btn btn-primary">
+            はじめてみる
+          </button>
+        </div>
+        <div class="flex justify-center">
+          <div class="mockup-browser border bg-base-200 w-full max-w-md">
+            <div class="mockup-browser-toolbar">
+              <div class="input">nutrition-pocket</div>
+            </div>
+            <div class="p-6 bg-base-100 text-center text-gray-400">
+              <%= image_tag "hero_mock.png",
+              alt: "栄養指導ポケット サービスイメージ",
+              class: "w-full h-auto rounded-md" %>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="mt-16">
+        <h3 class="text-lg font-semibold mb-8">
+          こんな場面、ありませんか？
+        </h3>
+
+        <div class="grid sm:grid-cols-3 gap-6">
+          <div class="card bg-base-200/60">
+            <div class="card-body text-sm">
+              <p>
+                限られた時間の中で、患者さんの状況を整理しながら
+                アドバイス内容を整理するのが難しい・・・
+              </p>
+            </div>
+          </div>
+
+          <div class="card bg-base-200/60">
+            <div class="card-body text-sm">
+              <p>
+                疾患ごとの資料や、自分なりの指導ポイントを
+                すぐに確認したい！
+              </p>
+            </div>
+          </div>
+
+          <div class="card bg-base-200/60">
+            <div class="card-body text-sm">
+              <p>
+                「今日はこの方に、どう伝えるか」を
+                迷ってしまう・・・
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="card bg-base-200/60">
-        <div class="card-body text-sm">
-          <p>
-            疾患ごとの資料や、自分なりの指導ポイントを
-            すぐに確認したい！
-          </p>
-        </div>
-      </div>
+      <section class="py-20">
+        <h2 class="text-2xl font-bold text-center mb-12">
+          日々の栄養指導を支える、2つの機能
+        </h2>
 
-      <div class="card bg-base-200/60">
-        <div class="card-body text-sm">
-          <p>
-            「今日はこの方に、どう伝えるか」を
-            迷ってしまう・・・
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- 指導ライブラリ -->
+          <div class="card bg-base-100 shadow-md">
+            <div class="card-body">
+              <h3 class="card-title text-primary">指導ライブラリ</h3>
+                <p class="text-gray-600">栄養士自身のナレッジを一元管理。 日々の指導で使う資料やメモを、いつでも取り出せます。</p>
+                <ul class="list-disc list-inside text-sm text-gray-500 mt-4 space-y-1">
+                  <li>指導ツール（画像・PDF）管理</li>
+                  <li>ナレッジメモ（指導時の確認事項・伝えたいポイント）</li>
+                </ul>
+            </div>
+          </div>
 
-  <section class="py-20">
-    <h2 class="text-2xl font-bold text-center mb-12">
-      日々の栄養指導を支える、2つの機能
-    </h2>
-
-    <div class="grid md:grid-cols-2 gap-8">
-      <!-- 指導ライブラリ -->
-      <div class="card bg-base-100 shadow-md">
-        <div class="card-body">
-          <h3 class="card-title text-primary">指導ライブラリ</h3>
-            <p class="text-gray-600">栄養士自身のナレッジを一元管理。 日々の指導で使う資料やメモを、いつでも取り出せます。</p>
-            <ul class="list-disc list-inside text-sm text-gray-500 mt-4 space-y-1">
-              <li>指導ツール（画像・PDF）管理</li>
-              <li>ナレッジメモ（指導時の確認事項・伝えたいポイント）</li>
-            </ul>
+          <!-- クイックアドバイス -->
+          <div class="card bg-base-100 shadow-md">
+            <div class="card-body">
+              <h3 class="card-title text-primary">クイックアドバイス</h3>
+                <p class="text-gray-600"> 疾患名や生活習慣を選択するだけで、 患者に合わせたアドバイス文のヒントをAIが生成します。</p>
+                <ul class="list-disc list-inside text-sm text-gray-500 mt-4 space-y-1"> <li>疾患・生活習慣・食生活を選択</li>
+                <li>指導文作成のヒントを自動生成</li>
+              </ul>
+            </div>
+          </div>
         </div>
-      </div>
-
-      <!-- クイックアドバイス -->
-      <div class="card bg-base-100 shadow-md">
-        <div class="card-body">
-          <h3 class="card-title text-primary">クイックアドバイス</h3>
-            <p class="text-gray-600"> 疾患名や生活習慣を選択するだけで、 患者に合わせたアドバイス文のヒントをAIが生成します。</p>
-            <ul class="list-disc list-inside text-sm text-gray-500 mt-4 space-y-1"> <li>疾患・生活習慣・食生活を選択</li>
-            <li>指導文作成のヒントを自動生成</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
+      </section>
+    <% end %>
 </div>
