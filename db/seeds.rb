@@ -7,3 +7,16 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+# 疾患名の初期データ
+system_diseases = [
+  "糖尿病",
+  "高血圧",
+  "脂質異常症",
+  "慢性腎臓病",
+  "痛風・高尿酸血症"
+]
+
+system_diseases.each do |name|
+  Disease.find_or_create_by!(name: name, user_id: nil)
+end
