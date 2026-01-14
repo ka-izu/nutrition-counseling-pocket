@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
+
   # Defines the root path route ("/")
   root "pages#top"
-
-  get "pages/top"
+  namespace :library do
+    resources :diseases, only: %i[index]
+  end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
