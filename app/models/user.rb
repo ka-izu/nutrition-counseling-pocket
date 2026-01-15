@@ -4,5 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :validatable
 
+  has_many :teaching_materials, dependent: :destroy
+  has_many :diseases, dependent: :destroy
+
   validates :name, presence: true, length: { maximum: 255 }
 end
