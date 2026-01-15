@@ -11,6 +11,10 @@ class Disease < ApplicationRecord
   validates :name, presence: true
   validates :slug, presence: true, uniqueness: true
 
+  def to_param
+    slug
+  end
+
   private
 
   def generate_slug
