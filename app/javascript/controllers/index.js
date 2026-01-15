@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import CardLinkController from "./card_link_controller"
+application.register("card-link", CardLinkController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
