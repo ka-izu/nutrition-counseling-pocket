@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_01_14_080633) do
+ActiveRecord::Schema[7.2].define(version: 2026_01_15_005841) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,24 @@ ActiveRecord::Schema[7.2].define(version: 2026_01_14_080633) do
     t.datetime "updated_at", null: false
     t.index ["slug"], name: "index_diseases_on_slug", unique: true
     t.index ["user_id"], name: "index_diseases_on_user_id"
+  end
+
+  create_table "teaching_material_diseases", force: :cascade do |t|
+    t.bigint "teaching_material_id", null: false
+    t.bigint "disease_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["disease_id"], name: "index_teaching_material_diseases_on_disease_id"
+    t.index ["teaching_material_id"], name: "index_teaching_material_diseases_on_teaching_material_id"
+  end
+
+  create_table "teaching_materials", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "description"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_teaching_materials_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -37,4 +55,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_01_14_080633) do
   end
 
   add_foreign_key "diseases", "users"
+  add_foreign_key "teaching_material_diseases", "diseases"
+  add_foreign_key "teaching_material_diseases", "teaching_materials"
+  add_foreign_key "teaching_materials", "users"
 end
