@@ -17,18 +17,8 @@
           </svg>
 
           <%= link_to disease.name,
-                      "#",
-                      class: "font-medium" %>
-
-<%
-=begin
-%>
-          <%= link_to disease.name,
                       library_disease_teaching_materials_path(disease),
                       class: "font-medium" %>
-<%
-=end
-%>
         </div>
       </li>
     <% end %>

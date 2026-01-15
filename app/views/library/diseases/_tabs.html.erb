@@ -1,0 +1,13 @@
+<div role="tablist" class="tabs tabs-lift mb-6">
+
+  <%= link_to "指導ツール",
+    library_disease_teaching_materials_path(@disease),
+    role: "tab",
+    class: "tab #{controller_name == 'teaching_materials' ? 'tab-active' : ''}" %>
+
+  <%= link_to "ナレッジメモ",
+    "library_disease_knowledge_memos_path(@disease)",
+    role: "tab",
+    class: "tab #{controller_name == 'knowledge_memos' ? 'tab-active' : ''}" %>
+
+</div>
