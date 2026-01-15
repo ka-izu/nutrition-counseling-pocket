@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "pages#top"
   namespace :library do
-    resources :diseases, only: %i[index]
+    resources :diseases, only: %i[index] do
+      resources :teaching_materials, only: %i[index]
+    end
   end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
