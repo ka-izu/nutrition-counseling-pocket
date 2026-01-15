@@ -76,3 +76,10 @@
   );
   --alert-content-color: var(--color-error-content);
 }
+
+.icon-btn {
+  @apply inline-flex items-center justify-center
+         p-1 rounded
+         transition-transform duration-150 ease-out
+         hover:scale-125;
+}

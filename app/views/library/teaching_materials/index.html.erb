@@ -4,9 +4,13 @@
 
 <%= render "library/diseases/tabs" %>
 
-<%= link_to "＋ 新しいアイテムを追加",
-  "new_library_disease_teaching_material_path(@disease)",
-  class: "btn btn-primary mb-6" %>
+<%= link_to "new_library_disease_teaching_material_path(@disease)",
+      class: "btn btn-primary mb-6" do %>
+
+  <%= render "shared/icons/plus" %>
+  新しいアイテムを追加
+
+<% end %>
 
 <div class="bg-base-100 border-base-300 p-6">
   <% if @teaching_materials.any? %>
@@ -21,7 +25,7 @@
 
           <div class="card-body flex flex-col flex-1 p-4">
             <h2 class="card-title"><%= tm.title %></h2>
-            <p class="text-sm text-gray-500"><%= tm.description %></p>
+            <p class="text-sm text-base-content"><%= tm.description %></p>
 
             <!-- 疾患タグ -->
             <div class="flex flex-wrap gap-2">
@@ -36,20 +40,10 @@
             <div class="card-actions mt-auto justify-end">
               <!-- 編集 -->
               <%= link_to "edit_library_disease_teaching_material_path(@disease, tm)",
-                class: "btn btn-ghost btn-sm",
+                class: "icon-btn",
                 title: "編集" do %>
                 <!-- pencil -->
-                <svg xmlns="http://www.w3.org/2000/svg"
-                     class="h-5 w-5"
-                     fill="none"
-                     viewBox="0 0 24 24"
-                     stroke="currentColor">
-                  <path stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M15.232 5.232l3.536 3.536M9 11l6-6
-                           3 3-6 6H9v-3z" />
-                </svg>
+                <%= render "shared/icons/pencil", classes: "text-base-content" %>
               <% end %>
 
               <!-- 削除 -->
@@ -58,22 +52,10 @@
                   turbo_method: :delete,
                   turbo_confirm: "削除しますか？"
                 },
-                class: "btn btn-ghost btn-sm text-error",
+                class: "icon-btn text-error",
                 title: "削除" do %>
                 <!-- trash -->
-                <svg xmlns="http://www.w3.org/2000/svg"
-                     class="h-5 w-5"
-                     fill="none"
-                     viewBox="0 0 24 24"
-                     stroke="currentColor">
-                  <path stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862
-                           a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6
-                           M9 7h6m2 0H7m2-3h6a1 1 0 011 1v1H8V5
-                           a1 1 0 011-1z" />
-                </svg>
+                <%= render "shared/icons/trash" %>
               <% end %>
             </div>
           </div>
@@ -81,7 +63,7 @@
       <% end %>
     </div>
   <% else %>
-    <p class="text-sm text-gray-500">
+    <p class="text-sm text-base-content">
       登録された指導ツールはまだありません。
     </p>
   <% end %>
