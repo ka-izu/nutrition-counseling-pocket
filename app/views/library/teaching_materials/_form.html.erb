@@ -3,7 +3,7 @@
               local: true do |f| %>
 
   <% if teaching_material.errors.any? %>
-    <div class="alert alert-error mb-6">
+    <div class="mb-6 border border-l-4 rounded-sm border-error bg-error/10 p-4 text-error">
       <ul class="list-disc pl-5">
         <% teaching_material.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
