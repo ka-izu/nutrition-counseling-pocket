@@ -18,7 +18,6 @@
     ========================== -->
     <div>
       <%= f.label :title,
-            "タイトル",
             class: "block text-sm font-medium text-base-content mb-1" %>
 
       <%= f.text_field :title,
@@ -33,7 +32,6 @@
     ========================== -->
     <div>
       <%= f.label :description,
-            "説明",
             class: "block text-sm font-medium text-base-content mb-1" %>
 
       <%= f.text_field :description,
@@ -47,9 +45,8 @@
          疾患（複数選択 / badge表示）
     ========================== -->
     <div>
-      <label class="block text-sm font-medium text-base-content mb-1">
-        対象疾患
-      </label>
+      <%= f.label :teaching_material_diseases,
+            class: "block text-sm font-medium text-base-content mb-1" %>
 
       <p class="text-xs text-base-content/60 mb-2">
         該当する疾患を複数選択できます

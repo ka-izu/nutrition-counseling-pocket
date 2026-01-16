@@ -1,0 +1,9 @@
+ja:
+  activerecord:
+    models:
+      teaching_material: 指導ツール
+    attributes:
+      teaching_material:
+        title: タイトル
+        description: 説明
+        teaching_material_diseases: 対象疾患
