@@ -9,14 +9,14 @@ class Library::TeachingMaterialsController < Library::BaseLibraryController
 
   def new
     @teaching_material = TeachingMaterial.new
-    
+
     # 一覧ページで選択した疾患を @teaching_material.diseases の初期値としてセット
     if @disease
       @teaching_material.diseases << @disease
     end
 
     # user-generated + system-generated 疾患を取得
-    @diseases = Disease.where(user_id: [nil, current_user.id])
+    @diseases = Disease.where(user_id: [ nil, current_user.id ])
   end
 
   def create
