@@ -24,7 +24,7 @@
       <% end %>
 
       <%= f.text_field :title,
-            placeholder: "タイトルを入力してください",
+            placeholder: t(".placeholders.title"),
             class: "w-full border rounded-sm p-2 text-sm
                     border-base-300
                     focus:outline-none focus:ring-2 focus:ring-primary" %>
@@ -38,7 +38,7 @@
             class: "block text-sm font-medium text-base-content mb-1" %>
 
       <%= f.text_field :description,
-            placeholder: "このアイテムの説明を登録できます",
+            placeholder: t(".placeholders.description"),
             class: "w-full border rounded-sm p-2 text-sm
                     border-base-300
                     focus:outline-none focus:ring-2 focus:ring-primary" %>
@@ -50,12 +50,12 @@
     <div>
       <%= f.label :teaching_material_diseases,
             class: "block text-sm font-medium text-base-content mb-1" do %>
-        対象疾患
+        <%= t(".labels.diseases") %>
         <span class="text-error ml-1">*</span>
       <% end %>
 
       <p class="text-xs text-base-content/60 mb-2">
-        1つ以上選択してください（複数選択可）
+        <%= t(".hints.diseases") %>
       </p>
 
       <div data-controller="multi-select" class="dropdown w-full">
@@ -83,7 +83,7 @@
               <!-- placeholder -->
               <span class="text-base-content/50 text-sm"
                     data-multi-select-target="placeholder">
-                疾患を選択してください
+                <%= t(".placeholders.teaching_material_diseases") %>
               </span>
             </div>
 
@@ -126,7 +126,7 @@
          保存ボタン
     ========================== -->
     <div class="flex justify-center pt-6">
-      <%= f.submit submit_label,
+      <%= f.submit nil,
             class: "btn btn-primary text-base px-8" %>
     </div>
 
