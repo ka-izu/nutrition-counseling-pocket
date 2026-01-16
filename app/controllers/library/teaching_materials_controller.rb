@@ -26,9 +26,9 @@ class Library::TeachingMaterialsController < Library::BaseLibraryController
 
     if @teaching_material.save
       redirect_to library_disease_teaching_materials_path,
-                  notice: "指導ツールを作成しました"
+                  notice: "指導ツールを登録しました"
     else
-      render :new, status: :unprocessable_entity, notice: "指導ツールを作成できませんでした"
+      render :new, status: :unprocessable_entity, notice: "指導ツールを登録できませんでした"
     end
   end
 

@@ -1,0 +1,19 @@
+ja:
+  helpers:
+    submit:
+      create: 登録
+      update: 更新
+      submit: 保存
+  library:
+    teaching_materials:
+      form:
+        labels:
+          diseases: 対象疾患
+        hints:
+          diseases: 1つ以上選択してください（複数選択可）
+        placeholders:
+          title: 例：食事療法の基本説明
+          description: 資料の説明を登録できます
+          teaching_material_diseases: 疾患を選択してください
+      new:
+        title: "新しいアイテム（%{disease}）"

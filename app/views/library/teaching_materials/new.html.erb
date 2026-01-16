@@ -1,19 +1,12 @@
 <div class="flex justify-center">
   <div class="w-full max-w-xl">
     <h1 class="text-xl font-bold mb-6">
-      新しいアイテム（<%= @disease.name %>）
+      <%= t(".title", disease: @disease.name) %>
     </h1>
 
     <%= render "form",
           teaching_material: @teaching_material,
           diseases: @diseases,
-          form_url: library_disease_teaching_materials_path(@disease),
-          submit_label: "登録する" %>
+          form_url: library_disease_teaching_materials_path(@disease) %>
   </div>
-</div>
-
-<div class="mb-4">
-  <%= link_to "← 指導ツール一覧に戻る",
-    library_disease_teaching_materials_path(@disease),
-    class: "text-sm text-gray-500 hover:underline" %>
 </div>
