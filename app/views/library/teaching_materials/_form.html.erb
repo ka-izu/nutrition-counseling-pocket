@@ -1,0 +1,138 @@
+<%= form_with model: teaching_material,
+              url: form_url,
+              local: true do |f| %>
+
+  <% if teaching_material.errors.any? %>
+    <div class="alert alert-error mb-6">
+      <ul class="list-disc pl-5">
+        <% teaching_material.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="bg-white pt-8 pb-10 px-10 rounded-xl shadow-lg space-y-6 max-w-xl">
+    <!-- =========================
+         タイトル
+    ========================== -->
+    <div>
+      <%= f.label :title,
+            "タイトル",
+            class: "block text-sm font-medium text-base-content mb-1" %>
+
+      <%= f.text_field :title,
+            placeholder: "例：食事療法の基本説明",
+            class: "w-full border rounded-lg p-2 text-base
+                    border-base-300
+                    focus:outline-none focus:ring-2 focus:ring-primary" %>
+    </div>
+
+    <!-- =========================
+         説明
+    ========================== -->
+    <div>
+      <%= f.label :description,
+            "説明",
+            class: "block text-sm font-medium text-base-content mb-1" %>
+
+      <%= f.text_field :description,
+            placeholder: "資料の説明を登録できます",
+            class: "w-full border rounded-lg p-2 text-base
+                    border-base-300
+                    focus:outline-none focus:ring-2 focus:ring-primary" %>
+    </div>
+
+    <!-- =========================
+         疾患（複数選択 / badge表示）
+    ========================== -->
+    <div>
+      <label class="block text-sm font-medium text-base-content mb-1">
+        対象疾患
+      </label>
+
+      <p class="text-xs text-base-content/60 mb-2">
+        該当する疾患を複数選択できます
+      </p>
+
+      <div data-controller="multi-select" class="dropdown w-full">
+
+        <!-- Select風ボタン -->
+        <div tabindex="0"
+             class="w-full min-h-[3rem] border rounded-lg p-2
+                    flex items-center justify-between cursor-pointer
+                    border-base-300
+                    focus:outline-none focus:ring-2 focus:ring-primary">
+
+          <!-- 左側：badge + placeholder -->
+            <div class="flex items-center flex-wrap gap-2">
+              <!-- badge -->
+              <div class="flex flex-wrap gap-1"
+                  data-multi-select-target="labels">
+                <% teaching_material.diseases.each do |disease| %>
+                  <span class="badge badge-primary badge-sm"
+                        data-id="<%= disease.id %>">
+                    <%= disease.name %>
+                  </span>
+                <% end %>
+              </div>
+
+              <!-- placeholder -->
+              <span class="text-base-content/50 text-sm"
+                    data-multi-select-target="placeholder">
+                疾患を選択してください
+              </span>
+            </div>
+
+            <!-- 右側：▼アイコン -->
+            <svg xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4 text-base-content/50 shrink-0"
+                fill="currentColor"
+                viewBox="0 0 20 20">
+              <path fill-rule="evenodd"
+                    d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.25a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z"
+                    clip-rule="evenodd" />
+            </svg>
+        </div>
+
+        <!-- Dropdown -->
+        <ul tabindex="0"
+            class="dropdown-content menu p-2 bg-base-100 shadow rounded-box w-full z-[1] mt-1">
+
+          <% diseases.each do |disease| %>
+            <li>
+              <label class="flex justify-between items-center cursor-pointer">
+                <span class="text-sm"><%= disease.name %></span>
+
+                <input type="checkbox"
+                       class="checkbox checkbox-sm"
+                       value="<%= disease.id %>"
+                       data-name="<%= disease.name %>"
+                       data-action="multi-select#toggle"
+                       <%= "checked" if teaching_material.disease_ids.include?(disease.id) %> />
+              </label>
+            </li>
+          <% end %>
+        </ul>
+
+        <!-- hidden inputs -->
+        <div data-multi-select-target="inputs">
+          <% teaching_material.disease_ids.each do |id| %>
+            <input type="hidden"
+                   name="teaching_material[disease_ids][]"
+                   value="<%= id %>">
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================
+         保存ボタン
+    ========================== -->
+    <div class="pt-6">
+      <%= f.submit submit_label,
+            class: "w-full btn btn-primary text-base" %>
+    </div>
+
+  </div>
+<% end %>
