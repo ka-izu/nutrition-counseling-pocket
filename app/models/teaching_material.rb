@@ -5,4 +5,5 @@ class TeachingMaterial < ApplicationRecord
   has_many :diseases, through: :teaching_material_diseases
 
   validates :title, presence: true
+  validates :teaching_material_diseases, presence: true
 end
