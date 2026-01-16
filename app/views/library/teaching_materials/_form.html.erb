@@ -18,11 +18,14 @@
     ========================== -->
     <div>
       <%= f.label :title,
-            class: "block text-sm font-medium text-base-content mb-1" %>
+            class: "block text-sm font-medium text-base-content mb-1" do %>
+        タイトル
+        <span class="text-error ml-1">*</span>
+      <% end %>
 
       <%= f.text_field :title,
-            placeholder: "例：食事療法の基本説明",
-            class: "w-full border rounded-lg p-2 text-base
+            placeholder: "タイトルを入力してください",
+            class: "w-full border rounded-sm p-2 text-sm
                     border-base-300
                     focus:outline-none focus:ring-2 focus:ring-primary" %>
     </div>
@@ -35,8 +38,8 @@
             class: "block text-sm font-medium text-base-content mb-1" %>
 
       <%= f.text_field :description,
-            placeholder: "資料の説明を登録できます",
-            class: "w-full border rounded-lg p-2 text-base
+            placeholder: "この指導ツールの説明などを登録できます",
+            class: "w-full border rounded-sm p-2 text-sm
                     border-base-300
                     focus:outline-none focus:ring-2 focus:ring-primary" %>
     </div>
@@ -46,17 +49,20 @@
     ========================== -->
     <div>
       <%= f.label :teaching_material_diseases,
-            class: "block text-sm font-medium text-base-content mb-1" %>
+            class: "block text-sm font-medium text-base-content mb-1" do %>
+        対象疾患
+        <span class="text-error ml-1">*</span>
+      <% end %>
 
       <p class="text-xs text-base-content/60 mb-2">
-        該当する疾患を複数選択できます
+        1つ以上選択してください（複数選択可）
       </p>
 
       <div data-controller="multi-select" class="dropdown w-full">
 
         <!-- Select風ボタン -->
         <div tabindex="0"
-             class="w-full min-h-[3rem] border rounded-lg p-2
+             class="w-full border rounded-sm p-2
                     flex items-center justify-between cursor-pointer
                     border-base-300
                     focus:outline-none focus:ring-2 focus:ring-primary">
@@ -126,9 +132,9 @@
     <!-- =========================
          保存ボタン
     ========================== -->
-    <div class="pt-6">
+    <div class="flex justify-center pt-6">
       <%= f.submit submit_label,
-            class: "w-full btn btn-primary text-base" %>
+            class: "btn btn-primary text-base px-8" %>
     </div>
 
   </div>
