@@ -10,5 +10,8 @@ application.register("card-link", CardLinkController)
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
+import MultiSelectController from "./multi_select_controller"
+application.register("multi-select", MultiSelectController)
+
 import ToastController from "./toast_controller"
 application.register("toast", ToastController)
