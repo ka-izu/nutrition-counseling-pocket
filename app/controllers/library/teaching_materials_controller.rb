@@ -22,12 +22,13 @@ class Library::TeachingMaterialsController < Library::BaseLibraryController
   def create
     @teaching_material =
       current_user.teaching_materials.build(teaching_material_params)
+    @diseases = Disease.where(user_id: [ nil, current_user.id ])
 
     if @teaching_material.save
       redirect_to library_disease_teaching_materials_path,
                   notice: "指導ツールを作成しました"
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity, notice: "指導ツールを作成できませんでした"
     end
   end
 
