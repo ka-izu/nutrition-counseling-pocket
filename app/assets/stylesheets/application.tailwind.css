@@ -69,11 +69,7 @@
 }
 
 .alert-error {
-  --alert-color: color-mix(
-    in oklab,
-    var(--color-error) 30%,
-    transparent
-  );
+  --alert-color: var(--color-error);
   --alert-content-color: var(--color-error-content);
 }
 
