@@ -113,6 +113,8 @@
 
         <!-- hidden inputs -->
         <div data-multi-select-target="inputs">
+          <!-- 空配列を明示的に送る -->
+          <input type="hidden" name="teaching_material[disease_ids][]" value="">
           <% teaching_material.disease_ids.each do |id| %>
             <input type="hidden"
                    name="teaching_material[disease_ids][]"
