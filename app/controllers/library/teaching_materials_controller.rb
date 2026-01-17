@@ -22,13 +22,12 @@ class Library::TeachingMaterialsController < Library::BaseLibraryController
   def create
     @teaching_material =
       current_user.teaching_materials.build(teaching_material_params)
-    # TODO: save失敗後に取得でもOK?
-    @diseases = Disease.where(user_id: [ nil, current_user.id ])
-
+    
     if @teaching_material.save
       redirect_to library_disease_teaching_materials_path,
-                  notice: "指導ツールを登録しました"
+      notice: "指導ツールを登録しました"
     else
+      @diseases = Disease.where(user_id: [ nil, current_user.id ])
       render :new, status: :unprocessable_entity, notice: "指導ツールを登録できませんでした"
     end
   end
