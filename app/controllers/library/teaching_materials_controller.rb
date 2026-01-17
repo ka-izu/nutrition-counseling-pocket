@@ -22,7 +22,7 @@ class Library::TeachingMaterialsController < Library::BaseLibraryController
   def create
     @teaching_material =
       current_user.teaching_materials.build(teaching_material_params)
-    
+
     if @teaching_material.save
       redirect_to library_disease_teaching_materials_path,
       notice: "指導ツールを登録しました"
@@ -35,7 +35,7 @@ class Library::TeachingMaterialsController < Library::BaseLibraryController
   def edit
     @teaching_material =
       current_user.teaching_materials.find(params[:id])
-    @diseases = Disease.where(user_id: [nil, current_user.id])
+    @diseases = Disease.where(user_id: [ nil, current_user.id ])
   end
 
   def update
@@ -46,7 +46,7 @@ class Library::TeachingMaterialsController < Library::BaseLibraryController
       redirect_to library_disease_teaching_materials_path,
                   notice: "指導ツールを更新しました"
     else
-      @diseases = Disease.where(user_id: [nil, current_user.id])
+      @diseases = Disease.where(user_id: [ nil, current_user.id ])
       render :edit, status: :unprocessable_entity, notice: "指導ツールを更新できませんでした"
     end
   end
