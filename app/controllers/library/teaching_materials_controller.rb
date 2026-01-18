@@ -25,7 +25,7 @@ class Library::TeachingMaterialsController < Library::BaseLibraryController
 
     if @teaching_material.save
       redirect_to library_disease_teaching_materials_path,
-      notice: t('defaults.flash_message.created', item: TeachingMaterial.model_name.human)
+      notice: t("defaults.flash_message.created", item: TeachingMaterial.model_name.human)
     else
       @diseases = Disease.where(user_id: [ nil, current_user.id ])
       render :new, status: :unprocessable_entity
@@ -44,7 +44,7 @@ class Library::TeachingMaterialsController < Library::BaseLibraryController
 
     if @teaching_material.update(teaching_material_params)
       redirect_to library_disease_teaching_materials_path,
-                  notice: t('defaults.flash_message.updated', item: TeachingMaterial.model_name.human)
+                  notice: t("defaults.flash_message.updated", item: TeachingMaterial.model_name.human)
     else
       @diseases = Disease.where(user_id: [ nil, current_user.id ])
       render :edit, status: :unprocessable_entity
