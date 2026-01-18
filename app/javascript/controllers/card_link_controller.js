@@ -7,11 +7,8 @@ export default class extends Controller {
   }
 
   go(event) {
-    // 親要素（.card）へのクリックイベント伝播を止める
-    if (event.target.closest("[data-stop-card-link]")) {
-      event.stopPropagation()
-      return
-    }
+    // 削除・編集ボタンがクリックされた場合はカード遷移しない
+    if (event.target.closest("a")) return
 
     window.location.href = this.urlValue
   }

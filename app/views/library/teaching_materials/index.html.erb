@@ -48,17 +48,15 @@
               <!-- 編集 -->
               <%= link_to edit_library_disease_teaching_material_path(@disease, tm),
                     class: "icon-btn",
-                    title: "編集",
-                    data: { stop_card_link: true } do %>
+                    title: "編集" do %>
                 <%= render "shared/icons/pencil" %>
               <% end %>
 
               <!-- 削除 -->
-              <%= link_to "library_disease_teaching_material_path(@disease, tm)",
+              <%= link_to library_disease_teaching_material_path(@disease, tm),
                     data: {
                       turbo_method: :delete,
-                      turbo_confirm: "削除しますか？",
-                      stop_card_link: true
+                      turbo_confirm: "削除しますか？"
                     },
                     class: "icon-btn text-error",
                     title: "削除" do %>
