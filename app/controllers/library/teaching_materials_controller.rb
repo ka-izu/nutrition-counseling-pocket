@@ -51,6 +51,17 @@ class Library::TeachingMaterialsController < Library::BaseLibraryController
     end
   end
 
+  def destroy
+    @teaching_material =
+      current_user.teaching_materials.find(params[:id])
+
+    @teaching_material.destroy
+
+    redirect_to library_disease_teaching_materials_path,
+                status: :see_other,
+                notice: t("defaults.flash_message.deleted", item: TeachingMaterial.model_name.human)
+  end
+
   private
 
   def teaching_material_params
