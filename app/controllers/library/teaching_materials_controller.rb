@@ -22,13 +22,32 @@ class Library::TeachingMaterialsController < Library::BaseLibraryController
   def create
     @teaching_material =
       current_user.teaching_materials.build(teaching_material_params)
-    @diseases = Disease.where(user_id: [ nil, current_user.id ])
 
     if @teaching_material.save
       redirect_to library_disease_teaching_materials_path,
-                  notice: "指導ツールを登録しました"
+      notice: t("defaults.flash_message.created", item: TeachingMaterial.model_name.human)
     else
-      render :new, status: :unprocessable_entity, notice: "指導ツールを登録できませんでした"
+      @diseases = Disease.where(user_id: [ nil, current_user.id ])
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def edit
+    @teaching_material =
+      current_user.teaching_materials.find(params[:id])
+    @diseases = Disease.where(user_id: [ nil, current_user.id ])
+  end
+
+  def update
+    @teaching_material =
+      current_user.teaching_materials.find(params[:id])
+
+    if @teaching_material.update(teaching_material_params)
+      redirect_to library_disease_teaching_materials_path,
+                  notice: t("defaults.flash_message.updated", item: TeachingMaterial.model_name.human)
+    else
+      @diseases = Disease.where(user_id: [ nil, current_user.id ])
+      render :edit, status: :unprocessable_entity
     end
   end
 

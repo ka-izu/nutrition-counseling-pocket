@@ -17,3 +17,14 @@ ja:
           teaching_material_diseases: 疾患を選択してください
       new:
         title: "新しいアイテム（%{disease}）"
+      edit:
+        title: "新しいアイテム（%{disease}）"
+  defaults:
+    flash_message:
+      created: "%{item}を登録しました"
+      not_created: "%{item}を登録できませんでした"
+      updated: "%{item}を更新しました"
+      not_updated: "%{item}を更新できませんでした"
+      deleted: "%{item}を削除しました"
+      require_login: ログインしてください
+      not_authorized: 権限がありません
