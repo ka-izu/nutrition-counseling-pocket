@@ -19,7 +19,7 @@
     <div>
       <%= f.label :title,
             class: "block text-sm font-medium text-base-content mb-1" do %>
-        タイトル
+        <%= TeachingMaterial.human_attribute_name(:title) %>
         <span class="text-error ml-1">*</span>
       <% end %>
 
@@ -50,7 +50,7 @@
     <div>
       <%= f.label :teaching_material_diseases,
             class: "block text-sm font-medium text-base-content mb-1" do %>
-        <%= t(".labels.diseases") %>
+        <%= TeachingMaterial.human_attribute_name(:teaching_material_diseases) %>
         <span class="text-error ml-1">*</span>
       <% end %>
 
@@ -124,9 +124,20 @@
       </div>
     </div>
 
-    <div class="my-3">
-      <%= f.label :document %><br>
-      <%= f.file_field :document %>
+    <div>
+      <%= f.label :document,
+            class: "block text-sm font-medium text-base-content mb-1" do %>
+        <%= TeachingMaterial.human_attribute_name(:document) %>
+        <span class="text-error ml-1">*</span>
+      <% end %>
+      
+      <p class="text-xs text-base-content/60 mb-2">
+        <%= t(".hints.document") %>
+      </p>
+
+      <%= f.file_field :document, 
+            class: "form-control",
+            accept: TeachingMaterial::ACCEPTED_CONTENT_TYPES.join(",") %>
     </div>
 
     <!-- =========================
