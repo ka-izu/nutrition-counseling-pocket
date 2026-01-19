@@ -16,7 +16,21 @@
   <% if @teaching_materials.any? %>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
       <% @teaching_materials.each do |tm| %>
-        <div
+        <% if tm.document.attached? %>
+          <div
+            class="card bg-base-100 shadow-sm flex flex-col h-full
+                  hover:shadow-md hover:bg-base-200
+                  transition cursor-pointer"
+            data-controller="card-link"
+            data-card-link-url-value="<%= url_for(tm.document) %>"
+            data-action="click->card-link#go" >
+            <figure class="aspect-[3/2] w-full overflow-hidden">
+              <%= image_tag tm.document,
+                    alt: tm.title,
+                    class: "w-full h-full object-cover" %>
+            </figure>
+        <% else %>
+          <div
           class="card bg-base-100 shadow-sm flex flex-col h-full
                  hover:shadow-md hover:bg-base-200
                  transition cursor-pointer"
@@ -29,42 +43,44 @@
                   alt: tm.title,
                   class: "w-full h-full object-cover" %>
           </figure>
+        <% end %>
 
-          <div class="card-body flex flex-col flex-1 p-4">
-            <h2 class="card-title"><%= tm.title %></h2>
-            <p class="text-sm text-base-content"><%= tm.description %></p>
 
-            <!-- 疾患タグ -->
-            <div class="flex flex-wrap gap-2 mt-2">
-              <% tm.diseases.each do |disease| %>
-                <span class="badge badge-outline badge-sm">
-                  <%= disease.name %>
-                </span>
-              <% end %>
-            </div>
+            <div class="card-body flex flex-col flex-1 p-4">
+              <h2 class="card-title"><%= tm.title %></h2>
+              <p class="text-sm text-base-content"><%= tm.description %></p>
 
-            <!-- 操作（カード内） -->
-            <div class="card-actions mt-auto justify-end gap-2">
-              <!-- 編集 -->
-              <%= link_to edit_library_disease_teaching_material_path(@disease, tm),
-                    class: "icon-btn",
-                    title: "編集" do %>
-                <%= render "shared/icons/pencil" %>
-              <% end %>
+              <!-- 疾患タグ -->
+              <div class="flex flex-wrap gap-2 mt-2">
+                <% tm.diseases.each do |disease| %>
+                  <span class="badge badge-outline badge-sm">
+                    <%= disease.name %>
+                  </span>
+                <% end %>
+              </div>
 
-              <!-- 削除 -->
-              <%= link_to library_disease_teaching_material_path(@disease, tm),
-                    data: {
-                      turbo_method: :delete,
-                      turbo_confirm: "削除しますか？"
-                    },
-                    class: "icon-btn text-error",
-                    title: "削除" do %>
-                <%= render "shared/icons/trash" %>
-              <% end %>
+              <!-- 操作（カード内） -->
+              <div class="card-actions mt-auto justify-end gap-2">
+                <!-- 編集 -->
+                <%= link_to edit_library_disease_teaching_material_path(@disease, tm),
+                      class: "icon-btn",
+                      title: "編集" do %>
+                  <%= render "shared/icons/pencil" %>
+                <% end %>
+
+                <!-- 削除 -->
+                <%= link_to library_disease_teaching_material_path(@disease, tm),
+                      data: {
+                        turbo_method: :delete,
+                        turbo_confirm: "削除しますか？"
+                      },
+                      class: "icon-btn text-error",
+                      title: "削除" do %>
+                  <%= render "shared/icons/trash" %>
+                <% end %>
+              </div>
             </div>
           </div>
-        </div>
 
       <% end %>
     </div>

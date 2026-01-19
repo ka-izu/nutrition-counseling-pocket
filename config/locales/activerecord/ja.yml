@@ -7,9 +7,12 @@ ja:
         title: タイトル
         description: 説明
         teaching_material_diseases: 対象疾患
+        document: 指導ツール
     errors:
       models:
         teaching_material:
           attributes:
             teaching_material_diseases:
               blank: を登録してください
+            document:
+              content_type_invalid: はJPEG / PNG / PDF形式のみアップロード可能です
