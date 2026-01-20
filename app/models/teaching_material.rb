@@ -19,7 +19,7 @@ class TeachingMaterial < ApplicationRecord
   # - 画像ファイルの場合は variant を生成
   # - PDF などプレビュー可能なファイルの場合は preview を生成
   # - ファイル未添付、またはプレビュー不可の場合は nil を返す
-  def thumbnail(size: [300, 300])
+  def thumbnail(size: [ 300, 300 ])
     # ファイルが添付されていない場合
     return unless document.attached?
 

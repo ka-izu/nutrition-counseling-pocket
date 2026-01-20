@@ -56,7 +56,7 @@ materials = materials_data.map do |data|
     when "外食時の注意点"
       system_diseases.where(name: "糖尿病")
     when "よくある質問集"
-      system_diseases.where(name: ["糖尿病", "高血圧"])
+      system_diseases.where(name: [ "糖尿病", "高血圧" ])
     else
       []
     end
