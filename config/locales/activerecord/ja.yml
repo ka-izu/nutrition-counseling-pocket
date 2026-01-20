@@ -13,6 +13,7 @@ ja:
         teaching_material:
           attributes:
             teaching_material_diseases:
-              blank: を登録してください
+              blank: を選択してください
             document:
               content_type_invalid: はJPEG / PNG / PDF形式のみアップロード可能です
+              blank: を選択してください

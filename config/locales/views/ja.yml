@@ -7,6 +7,8 @@ ja:
   library:
     teaching_materials:
       form:
+        buttons:
+          select_file: ファイルを選択
         hints:
           diseases: 1つ以上選択してください（複数選択可）
           document: ※ JPEG / PNG / PDF（5MB以下）に対応しています
@@ -14,9 +16,8 @@ ja:
           title: 例：食事療法の基本説明
           description: 資料の説明を登録できます
           teaching_material_diseases: 疾患を選択してください
+          document: 選択してください
       new:
-        title: "新しいアイテム（%{disease}）"
-      edit:
         title: "新しいアイテム（%{disease}）"
   defaults:
     flash_message:
