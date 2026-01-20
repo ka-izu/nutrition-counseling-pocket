@@ -171,7 +171,9 @@
             class="text-sm text-base-content/50 truncate max-w-xs"
             data-file-input-target="filename"
             data-placeholder="<%= t('.placeholders.document') %>">
-            <%= t(".placeholders.document") %>
+            <%= teaching_material.document.attached? ?
+                  teaching_material.document.filename.to_s :
+                  t(".placeholders.document") %>
           </span>
         </div>
       </div>

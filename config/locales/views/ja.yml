@@ -19,8 +19,6 @@ ja:
           document: 選択してください
       new:
         title: "新しいアイテム（%{disease}）"
-      edit:
-        title: "新しいアイテム（%{disease}）"
   defaults:
     flash_message:
       created: "%{item}を登録しました"
