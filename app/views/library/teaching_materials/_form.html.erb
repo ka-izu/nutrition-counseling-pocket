@@ -124,20 +124,57 @@
       </div>
     </div>
 
-    <div>
+    <!-- =========================
+        画像アップロード
+    ========================== -->
+    <div data-controller="file-input">
       <%= f.label :document,
             class: "block text-sm font-medium text-base-content mb-1" do %>
         <%= TeachingMaterial.human_attribute_name(:document) %>
         <span class="text-error ml-1">*</span>
       <% end %>
-      
+
       <p class="text-xs text-base-content/60 mb-2">
         <%= t(".hints.document") %>
       </p>
 
-      <%= f.file_field :document, 
-            class: "form-control",
-            accept: TeachingMaterial::ACCEPTED_CONTENT_TYPES.join(",") %>
+      <div
+        class="w-full border rounded-sm
+              border-base-300
+              focus-within:outline-none
+              focus-within:ring-2
+              focus-within:ring-primary">
+        <!-- ファイル選択UI -->
+        <div class="flex items-center gap-3">
+
+          <!-- ボタン風 -->
+          <label
+            class="inline-flex items-center gap-2
+                  px-4 py-2 rounded-sm text-sm
+                  bg-base-100
+                  cursor-pointer
+                  hover:bg-base-300
+                  focus-within:outline-none
+                  focus-within:ring-2
+                  focus-within:ring-primary">
+
+            <span><%= t(".buttons.select_file") %></span>
+
+            <%= f.file_field :document,
+                  class: "hidden",
+                  accept: TeachingMaterial::ACCEPTED_CONTENT_TYPES.join(","),
+                  data: { action: "file-input#change" } %>
+          </label>
+
+          <!-- ファイル名表示 -->
+          <span
+            class="text-sm text-base-content/50 truncate max-w-xs"
+            data-file-input-target="filename"
+            data-placeholder="<%= t('.placeholders.document') %>">
+            <%= t(".placeholders.document") %>
+          </span>
+        </div>
+      </div>
     </div>
 
     <!-- =========================
