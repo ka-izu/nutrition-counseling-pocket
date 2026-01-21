@@ -16,5 +16,8 @@ application.register("hello", HelloController)
 import MultiSelectController from "./multi_select_controller"
 application.register("multi-select", MultiSelectController)
 
+import StickyHeaderController from "./sticky_header_controller"
+application.register("sticky-header", StickyHeaderController)
+
 import ToastController from "./toast_controller"
 application.register("toast", ToastController)
