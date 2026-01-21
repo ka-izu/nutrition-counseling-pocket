@@ -1,13 +1,21 @@
-<div role="tablist" class="tabs tabs-lift mb-6">
+<div class="mb-6">
 
-  <%= link_to "指導ツール",
-    library_disease_teaching_materials_path(@disease),
-    role: "tab",
-    class: "tab #{controller_name == 'teaching_materials' ? 'tab-active' : ''}" %>
+  <!-- Tabs -->
+  <div role="tablist" class="tabs tabs-lift">
+    <%= link_to "指導ツール",
+      library_disease_teaching_materials_path(@disease),
+      role: "tab",
+      class: "tab #{controller_name == 'teaching_materials' ? 'tab-active bg-white' : ''}" %>
 
-  <%= link_to "ナレッジメモ",
-    "library_disease_knowledge_memos_path(@disease)",
-    role: "tab",
-    class: "tab #{controller_name == 'knowledge_memos' ? 'tab-active' : ''}" %>
+    <%= link_to "ナレッジメモ",
+      "#",
+      role: "tab",
+      class: "tab #{controller_name == 'knowledge_memos' ? 'tab-active bg-white' : ''}" %>
+  </div>
+
+  <!-- Tabs content wrapper -->
+  <div class="bg-white rounded-tr-lg rounded-br-lg rounded-bl-lg p-12">
+    <%= yield %>
+  </div>
 
 </div>
