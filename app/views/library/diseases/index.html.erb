@@ -1,26 +1,30 @@
-<div class="max-w-2xl mx-auto px-4 py-6">
-  <h1 class="text-xl font-bold mb-4">疾患一覧</h1>
+<section class="mx-auto max-w-5xl px-6 my-16">
+  <div class="max-w-2xl mx-auto">
+    <h1 class="text-xl font-bold mb-6">
+      疾患一覧
+    </h1>
 
-  <ul class="list bg-base-100 rounded-box shadow">
-    <% @diseases.each do |disease| %>
-      <li class="list-row hover:bg-base-200">
-        <div class="flex items-center gap-3">
-          <svg xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5 text-primary"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor">
-            <path stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 12h6m-3-3v6" />
-          </svg>
+    <ul class="list bg-base-100 rounded-box shadow">
+      <% @diseases.each do |disease| %>
+        <li class="list-row hover:bg-base-200">
+          <div class="flex items-center gap-3">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 class="h-5 w-5 text-primary"
+                 fill="none"
+                 viewBox="0 0 24 24"
+                 stroke="currentColor">
+              <path stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 12h6m-3-3v6" />
+            </svg>
 
-          <%= link_to disease.name,
-                      library_disease_teaching_materials_path(disease),
-                      class: "font-medium" %>
-        </div>
-      </li>
-    <% end %>
-  </ul>
-</div>
+            <%= link_to disease.name,
+                        library_disease_teaching_materials_path(disease),
+                        class: "font-medium" %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</section>
