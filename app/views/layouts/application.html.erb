@@ -17,7 +17,7 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
-  <body data-theme="nutrition-pocket">
+  <body data-theme="nutrition-pocket" class="min-h-screen flex flex-col">
     <!-- ヘッダー -->
     <% if user_signed_in? %>
      <%= render 'shared/header' %>
@@ -28,7 +28,7 @@
     <!-- フラッシュメッセージ -->
     <%= render 'shared/flash' %>
 
-    <main>
+    <main class="flex-1">
       <%= yield %>
     </main>
 
