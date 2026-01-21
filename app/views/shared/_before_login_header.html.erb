@@ -1,4 +1,17 @@
-<header class="navbar px-12 shadow-sm h-16">
+<header
+  data-controller="sticky-header"
+  data-sticky-header-shadow-class-value="shadow-md"
+  class="
+    navbar
+    px-12
+    h-16
+    sticky top-0
+    z-50
+    bg-base-100
+    transition-shadow
+    duration-200
+  "
+>
   <!-- 左側：ロゴ＋サービス名 -->
   <div class="flex-1">
     <%= link_to root_path,
@@ -7,41 +20,33 @@
       <%= image_tag "logo.png",
         alt: "栄養指導ポケット ロゴ",
         class: "h-8 w-auto object-contain" %>
+
       <span class="text-xl font-semibold text-primary">
         栄養指導ポケット
       </span>
     <% end %>
   </div>
 
-  <!-- 右側：ログインボタン -->
-  <div class="flex-none">
-    <div class="dropdown dropdown-end">
-      <!-- トリガー：Heroicon -->
-      <div
-        tabindex="0"
-        role="button"
-        class="
-          btn btn-ghost btn-circle
-          border-0 shadow-none
-          hover:shadow-none
-          hover:bg-transparent
-          focus:outline-none focus:ring-0
-        "
-      >
-        <%= render "shared/icons/user" %>
-      </div>
-      <!-- Dropdown menu -->
-      <ul
-        tabindex="-1"
-        class="menu menu-sm dropdown-content bg-base-100 rounded-sm z-10 mt-3 w-52 p-2 shadow"
-      >
-        <li>
-          <%= link_to "新規ユーザー登録", new_user_registration_path, class: "text-sm py-3 px-4" %>
-        </li>
-        <li>
-          <%= link_to "ログイン", new_user_session_path, class: "text-sm py-3 px-4" %>
-        </li>
-      </ul>
-    </div>
+  <!-- 右側：未ログイン -->
+  <div class="flex-none flex items-center gap-3">
+    <%= link_to "ログイン",
+      new_user_session_path,
+      class: "
+        btn btn-ghost
+        text-sm
+        text-base-content
+        border-0 shadow-none
+        hover:shadow-none
+        hover:bg-transparent
+        focus:outline-none focus:ring-0
+      " %>
+
+    <%= link_to "新規登録",
+      new_user_registration_path,
+      class: "
+        btn btn-primary
+        rounded-4xl
+        text-sm
+      " %>
   </div>
 </header>

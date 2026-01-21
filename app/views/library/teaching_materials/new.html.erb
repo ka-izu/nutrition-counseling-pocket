@@ -1,12 +1,14 @@
-<div class="flex justify-center">
-  <div class="w-full max-w-xl">
-    <h1 class="text-xl font-bold mb-6">
-      <%= t(".title", disease: @disease.name) %>
-    </h1>
+<section class="m-16">
+  <div class="flex justify-center">
+    <div class="w-full max-w-xl">
+      <h1 class="text-xl font-bold mb-6">
+        <%= t(".title", disease: @disease.name) %>
+      </h1>
 
-    <%= render "form",
-          teaching_material: @teaching_material,
-          diseases: @diseases,
-          form_url: library_disease_teaching_materials_path(@disease) %>
+      <%= render "form",
+            teaching_material: @teaching_material,
+            diseases: @diseases,
+            form_url: library_disease_teaching_materials_path(@disease) %>
+    </div>
   </div>
-</div>
+</section>
