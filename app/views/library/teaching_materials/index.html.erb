@@ -1,80 +1,102 @@
-<section class="m-16">
+<section class="mx-auto max-w-6xl px-6 my-16">
+  <!-- タイトル -->
   <h1 class="text-xl font-bold mb-4">
     <%= @disease.name %>
   </h1>
 
-  <%= render "library/diseases/tabs" %>
+  <!-- タブ -->
+  <%= render layout: "library/diseases/tabs" do %>
+    <!-- 操作エリア：左 追加 / 右 検索 -->
+    <div class="flex flex-col sm:flex-row
+                sm:items-center sm:justify-between
+                gap-4 mb-12">
+      <!-- 左：新規追加 -->
+      <%= link_to new_library_disease_teaching_material_path(@disease),
+            class: "btn btn-primary" do %>
+        <%= render "shared/icons/plus" %>
+        新しいアイテムを追加
+      <% end %>
 
-  <%= link_to new_library_disease_teaching_material_path(@disease),
-        class: "btn btn-primary mb-6" do %>
+      <!-- 右：検索 -->
+      <%# <div class="w-full max-w-xs">
+        <input
+          type="search"
+          placeholder="タイトルで検索"
+          class="input input-bordered w-full" />
+      </div> %>
+    </div>
 
-    <%= render "shared/icons/plus" %>
-    新しいアイテムを追加
+    <!-- 一覧 -->
+    <div class="border-base-300 p-6 rounded-box">
+      <% if @teaching_materials.any? %>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <% @teaching_materials.each do |tm| %>
+            <div
+              class="card bg-base-100 shadow-sm flex flex-col h-full
+                    hover:shadow-md hover:bg-base-200
+                    transition cursor-pointer"
+              data-controller="card-link"
+              data-card-link-url-value="<%= url_for(tm.document) %>"
+              data-action="click->card-link#go">
 
-  <% end %>
+              <!-- サムネイル -->
+              <figure class="aspect-[4/3] w-full overflow-hidden">
+                <% if tm.thumbnail? %>
+                  <%= image_tag tm.thumbnail,
+                        class: "w-full h-full object-cover" %>
+                <% else %>
+                  <div class="w-full h-full flex items-center justify-center text-xs text-gray-500">
+                    PDFを開く
+                  </div>
+                <% end %>
+              </figure>
 
-  <div class="bg-base-100 border-base-300 p-6">
-    <% if @teaching_materials.any? %>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <% @teaching_materials.each do |tm| %>
-          <div
-            class="card bg-base-100 shadow-sm flex flex-col h-full
-                  hover:shadow-md hover:bg-base-200
-                  transition cursor-pointer"
-            data-controller="card-link"
-            data-card-link-url-value="<%= url_for(tm.document) %>"
-            data-action="click->card-link#go" >
-            <figure class="aspect-[3/2] w-full overflow-hidden">
-              <% if tm.thumbnail? %>
-                <%= image_tag tm.thumbnail,
-                      class: "w-full h-full object-cover" %>
-              <% else %>
-                <div class="w-full h-full flex items-center justify-center text-sm text-gray-500">
-                  PDFを開く
+              <!-- 本文 -->
+              <div class="card-body flex flex-col flex-1 p-3">
+                <h2 class="card-title text-sm font-semibold">
+                  <%= tm.title %>
+                </h2>
+
+                <p class="text-xs text-base-content/80">
+                  <%= tm.description %>
+                </p>
+
+                <!-- 疾患タグ -->
+                <div class="flex flex-wrap gap-1 mt-2">
+                  <% tm.diseases.each do |disease| %>
+                    <span class="badge badge-outline badge-xs">
+                      <%= disease.name %>
+                    </span>
+                  <% end %>
                 </div>
-              <% end %>
-            </figure>
-            <div class="card-body flex flex-col flex-1 p-4">
-              <h2 class="card-title"><%= tm.title %></h2>
-              <p class="text-sm text-base-content"><%= tm.description %></p>
 
-              <!-- 疾患タグ -->
-              <div class="flex flex-wrap gap-2 mt-2">
-                <% tm.diseases.each do |disease| %>
-                  <span class="badge badge-outline badge-sm">
-                    <%= disease.name %>
-                  </span>
-                <% end %>
-              </div>
+                <!-- 操作 -->
+                <div class="card-actions mt-auto justify-end gap-1">
+                  <%= link_to edit_library_disease_teaching_material_path(@disease, tm),
+                        class: "icon-btn",
+                        title: "編集" do %>
+                    <%= render "shared/icons/pencil" %>
+                  <% end %>
 
-              <!-- 操作（カード内） -->
-              <div class="card-actions mt-auto justify-end gap-2">
-                <!-- 編集 -->
-                <%= link_to edit_library_disease_teaching_material_path(@disease, tm),
-                      class: "icon-btn",
-                      title: "編集" do %>
-                  <%= render "shared/icons/pencil" %>
-                <% end %>
-
-                <!-- 削除 -->
-                <%= link_to library_disease_teaching_material_path(@disease, tm),
-                      data: {
-                        turbo_method: :delete,
-                        turbo_confirm: "削除しますか？"
-                      },
-                      class: "icon-btn text-error",
-                      title: "削除" do %>
-                  <%= render "shared/icons/trash" %>
-                <% end %>
+                  <%= link_to library_disease_teaching_material_path(@disease, tm),
+                        data: {
+                          turbo_method: :delete,
+                          turbo_confirm: "削除しますか？"
+                        },
+                        class: "icon-btn text-error",
+                        title: "削除" do %>
+                    <%= render "shared/icons/trash" %>
+                  <% end %>
+                </div>
               </div>
             </div>
-          </div>
-        <% end %>
-      </div>
-    <% else %>
-      <p class="text-sm text-base-content">
-        登録された指導ツールはまだありません。
-      </p>
-    <% end %>
-  </div>
+          <% end %>
+        </div>
+      <% else %>
+        <p class="text-sm text-base-content">
+          登録された指導ツールはまだありません。
+        </p>
+      <% end %>
+    </div>
+  <% end %>
 </section>

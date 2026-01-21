@@ -1,47 +1,49 @@
 <div class="w-full bg-base-100 text-secondary">
   <% if user_signed_in? %>
-    <div class="m-16 rounded-box p-8 bg-base-100">
+    <div class="mx-auto max-w-5xl px-6 my-16">
+      <div class="rounded-box p-8 bg-base-100">
 
-      <!-- Welcome -->
-      <div class="mb-8">
-        <h1 class="text-2xl font-bold mb-2">
-          ようこそ、栄養指導ポケットへ
-        </h1>
-        <p class="text-secondary/70 text-sm">
-          こんにちは、<%= current_user.name %>さん。
-          栄養指導を、安心して取り組むための準備をしましょう！
-        </p>
-      </div>
-
-      <!-- 今日できること -->
-      <div class="grid sm:grid-cols-2 gap-6">
-        <div class="card bg-base-200">
-          <div class="card-body">
-            <h2 class="card-title text-base">
-              指導資料・メモを確認
-            </h2>
-            <p class="text-sm text-secondary/70">
-              疾患別に整理された資料や、
-              これまでのメモをすぐに確認できます。
-            </p>
-            <%= link_to library_diseases_path, class: "btn btn-primary mt-4" do %>
-              ライブラリを開く
-            <% end %>
-          </div>
+        <!-- Welcome -->
+        <div class="mb-8">
+          <h1 class="text-2xl font-bold mb-2">
+            ようこそ、栄養指導ポケットへ
+          </h1>
+          <p class="text-secondary/70 text-sm">
+            こんにちは、<%= current_user.name %>さん。
+            栄養指導を、安心して取り組むための準備をしましょう！
+          </p>
         </div>
 
-        <div class="card bg-base-200">
-          <div class="card-body">
-            <h2 class="card-title text-base">
-              指導内容のヒントを探す
-            </h2>
-            <p class="text-sm text-secondary/70">
-              患者の状態に応じた
-              「伝え方」のヒントを確認できます。
-            </p>
-            <%= link_to "#", class: "btn btn-outline mt-4" do %>
-              ヒントを見る
-            <% end %>
+        <!-- 今日できること -->
+        <div class="grid sm:grid-cols-2 gap-6">
+          <div class="card bg-base-200">
+            <div class="card-body">
+              <h2 class="card-title text-base">
+                指導資料・メモを確認
+              </h2>
+              <p class="text-sm text-secondary/70">
+                疾患別に整理された資料や、
+                これまでのメモをすぐに確認できます。
+              </p>
+              <%= link_to library_diseases_path, class: "btn btn-primary mt-4" do %>
+                ライブラリを開く
+              <% end %>
+            </div>
+          </div>
+
+          <div class="card bg-base-200">
+            <div class="card-body">
+              <h2 class="card-title text-base">
+                指導内容のヒントを探す
+              </h2>
+              <p class="text-sm text-secondary/70">
+                患者の状態に応じた
+                「伝え方」のヒントを確認できます。
+              </p>
+              <%= link_to "#", class: "btn btn-outline mt-4" do %>
+                ヒントを見る
+              <% end %>
+            </div>
           </div>
         </div>
       </div>
@@ -50,7 +52,10 @@
   <!-- ===================== -->
   <!-- HERO -->
   <!-- ===================== -->
-  <section class="grid mx-36 min-h-screen md:grid-cols-2 gap-12 items-center mb-16">
+  <section class="mx-auto max-w-6xl px-6 min-h-screen
+                  grid md:grid-cols-2
+                  gap-6 md:gap-8 lg:gap-10
+                  items-center">
     <div>
       <h1 class="text-4xl font-bold leading-snug mb-4">
         限られた時間でも、<br />
@@ -60,7 +65,7 @@
       </h1>
 
       <span class="badge badge-soft badge-primary p-4 mb-8">
-        病院/クリニック・薬局
+        病院・クリニック・薬局
       </span>
 
       <p class="text-base text-secondary/70 mb-8 leading-relaxed">
@@ -76,7 +81,7 @@
       </div>
     </div>
 
-    <div class="flex justify-end">
+    <div class="md:justify-self-end justify-self-center">
       <div class="mockup-browser border bg-base-200 w-full max-w-md shadow-lg">
         <div class="mockup-browser-toolbar">
           <div class="input">栄養指導ポケット</div>
@@ -110,8 +115,8 @@
                     px-4 py-3 rounded-xl text-center w-64 h-32
                     flex items-center justify-center">
           患者情報が揃っていない中で、
-          その場対応になってしまう…
-          納得感のある説明ができたか不安になる
+          事前準備をするのは難しく、
+          その場対応になってしまう
 
           <!-- とんがり -->
           <div class="absolute left-1/2 -bottom-2 -translate-x-1/2
@@ -136,8 +141,8 @@
         <div class="relative bg-base-300 text-secondary text-base leading-relaxed
                     px-4 py-3 rounded-xl text-center w-64 h-32
                     flex items-center justify-center">
-          その場対応では、用意していた資料も
-          結局うまく使えずに終わることが多い
+          用意していた資料も、
+          結局うまく使えずに終わってしまうことが多い
 
           <!-- とんがり -->
           <div class="absolute left-1/2 -bottom-2 -translate-x-1/2
@@ -162,7 +167,7 @@
                     px-4 py-3 rounded-xl text-center w-64 h-32
                     flex items-center justify-center">
           「この伝え方でよかったのか」と、
-          あとから迷うことがある…
+          あとから迷うことがある。
           なんとなく、指導の場が不安になる
           <!-- とんがり -->
           <div class="absolute left-1/2 -bottom-2 -translate-x-1/2
