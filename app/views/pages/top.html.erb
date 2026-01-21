@@ -1,54 +1,53 @@
 <div class="w-full bg-base-100 text-secondary">
   <!-- HEROセクション -->
-    <% if user_signed_in? %>
-<div class="min-h-screen m-16 rounded-box p-8 bg-base-100">
+  <% if user_signed_in? %>
+    <div class="min-h-screen m-16 rounded-box p-8 bg-base-100">
 
-  <!-- Welcome -->
-  <div class="mb-8">
-    <h1 class="text-2xl font-bold mb-2">
-      ようこそ、栄養指導ポケットへ
-    </h1>
-    <p class="text-secondary/70 text-sm">
-      こんにちは、<%= current_user.name %>さん。
-      栄養指導を、安心して取り組むための準備をしましょう！
-    </p>
-  </div>
-
-  <!-- 今日できること -->
-  <div class="grid sm:grid-cols-2 gap-6">
-    <div class="card bg-base-200">
-      <div class="card-body">
-        <h2 class="card-title text-base">
-          指導資料・メモを確認
-        </h2>
-        <p class="text-sm text-secondary/70">
-          疾患別に整理された資料や、
-          これまでのメモをすぐに確認できます。
+      <!-- Welcome -->
+      <div class="mb-8">
+        <h1 class="text-2xl font-bold mb-2">
+          ようこそ、栄養指導ポケットへ
+        </h1>
+        <p class="text-secondary/70 text-sm">
+          こんにちは、<%= current_user.name %>さん。
+          栄養指導を、安心して取り組むための準備をしましょう！
         </p>
-        <%= link_to library_diseases_path, class: "btn btn-primary mt-4" do %>
-          ライブラリを開く
-        <% end %>
+      </div>
+
+      <!-- 今日できること -->
+      <div class="grid sm:grid-cols-2 gap-6">
+        <div class="card bg-base-200">
+          <div class="card-body">
+            <h2 class="card-title text-base">
+              指導資料・メモを確認
+            </h2>
+            <p class="text-sm text-secondary/70">
+              疾患別に整理された資料や、
+              これまでのメモをすぐに確認できます。
+            </p>
+            <%= link_to library_diseases_path, class: "btn btn-primary mt-4" do %>
+              ライブラリを開く
+            <% end %>
+          </div>
+        </div>
+
+        <div class="card bg-base-200">
+          <div class="card-body">
+            <h2 class="card-title text-base">
+              指導内容のヒントを探す
+            </h2>
+            <p class="text-sm text-secondary/70">
+              患者の状態に応じた
+              「伝え方」のヒントを確認できます。
+            </p>
+            <%= link_to "#", class: "btn btn-outline mt-4" do %>
+              ヒントを見る
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
-
-    <div class="card bg-base-200">
-      <div class="card-body">
-        <h2 class="card-title text-base">
-          指導内容のヒントを探す
-        </h2>
-        <p class="text-sm text-secondary/70">
-          患者の状態に応じた
-          「伝え方」のヒントを確認できます。
-        </p>
-        <%= link_to "#", class: "btn btn-outline mt-4" do %>
-          ヒントを見る
-        <% end %>
-      </div>
-    </div>
-  </div>
-</div>
-
-    <% else %>
+  <% else %>
   <!-- ===================== -->
   <!-- HERO -->
   <!-- ===================== -->
