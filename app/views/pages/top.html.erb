@@ -1,4 +1,4 @@
-<div class="container mx-auto px-6 py-12 bg-base-100 text-secondary">
+<div class="w-full bg-base-100 text-secondary">
   <!-- HEROセクション -->
     <% if user_signed_in? %>
       <div class="mt-10 rounded-box p-6">
@@ -17,104 +17,271 @@
         </div>
       </div>
     <% else %>
-      <section class="grid min-h-screen md:grid-cols-2 gap-10 items-center">
-        <div>
-          <h1 class="text-3xl font-bold leading-snug mb-6">
-            栄養指導の判断を支えて、<br />
-            <span class="text-primary">
-              本来注力すべきコミュニケーションに集中できる時間を
-            </span>
-          </h1>
+  <!-- ===================== -->
+  <!-- HERO -->
+  <!-- ===================== -->
+  <section class="grid mx-36 min-h-screen md:grid-cols-2 gap-12 items-center mb-16">
+    <div>
+      <h1 class="text-4xl font-bold leading-snug mb-4">
+        限られた時間でも、<br />
+        <span class="text-primary">
+          迷わず伝えられる栄養指導を
+        </span>
+      </h1>
 
-          <p class="text-gray-600 mb-8">
-            栄養指導ポケットは、限られた時間・限られた患者情報の中で
-            即時の判断を求められる調剤薬局の栄養士に向けた栄養指導支援ツールです。
-            自分専用のナレッジを整理・蓄積し、
-            患者の特性に応じたクイックアドバイスで、指導の場を支えます。
-          </p>
+      <span class="badge badge-soft badge-primary p-4 mb-8">
+        病院/クリニック・薬局
+      </span>
 
-          <button class="btn btn-primary">
-            はじめてみる
-          </button>
+      <p class="text-base text-secondary/70 mb-8 leading-relaxed">
+        栄養指導ポケットは、<br />
+        医療の現場で栄養アドバイスに関わる人のための、<br />
+        栄養指導ナレッジ管理 ＆ クイックアドバイスツールです
+      </p>
+
+      <div class="flex flex-wrap gap-4">
+        <%= link_to new_user_registration_path, class: "btn btn-primary rounded-4xl px-8" do %>
+          はじめてみる
+        <% end %>
+        <%# <a href="#"
+          class="
+            btn
+            btn-outline
+            btn-primary
+            px-8
+            hover:bg-transparent
+            hover:text-primary
+            hover:border-primary
+            hover:shadow-none
+            focus:outline-none
+            focus:ring-0
+            rounded-4xl
+          ">
+          機能を見る
+        </a> %>
+      </div>
+    </div>
+
+    <div class="flex justify-end">
+      <div class="mockup-browser border bg-base-200 w-full max-w-md shadow-lg">
+        <div class="mockup-browser-toolbar">
+          <div class="input">栄養指導ポケット</div>
         </div>
-        <div class="flex justify-center">
-          <div class="mockup-browser border bg-base-200 w-full max-w-md">
-            <div class="mockup-browser-toolbar">
-              <div class="input">nutrition-pocket</div>
-            </div>
-            <div class="p-6 bg-base-100 text-center text-gray-400">
-              <%= image_tag "hero_mock.png",
-              alt: "栄養指導ポケット サービスイメージ",
-              class: "w-full h-auto rounded-md" %>
-            </div>
-          </div>
+        <div class="bg-base-100">
+          <%= image_tag "hero_mock.png",
+            alt: "栄養指導ポケット サービスイメージ",
+            class: "w-full h-auto" %>
         </div>
-      </section>
+      </div>
+    </div>
+  </section>
 
-      <div class="mt-16">
-        <h3 class="text-lg font-semibold mb-8">
-          こんな場面、ありませんか？
-        </h3>
+  <!-- ===================== -->
+  <!-- 課題共感 -->
+  <!-- ===================== -->
+<section>
+  <div class="text-center max-w-3xl mx-auto mb-20">
+    <h2 class="text-2xl font-bold leading-relaxed mb-6">
+      このようなお悩みを解決します
+    </h2>
 
-        <div class="grid sm:grid-cols-3 gap-6">
-          <div class="card bg-base-200/60">
-            <div class="card-body text-sm">
-              <p>
-                限られた時間の中で、患者さんの状況を整理しながら
-                アドバイス内容を整理するのが難しい・・・
-              </p>
-            </div>
-          </div>
+    <div class="mx-auto mt-4 mb-6 h-1 w-16 bg-primary rounded"></div>
+  </div>
 
-          <div class="card bg-base-200/60">
-            <div class="card-body text-sm">
-              <p>
-                疾患ごとの資料や、自分なりの指導ポイントを
-                すぐに確認したい！
-              </p>
-            </div>
-          </div>
+  <div class="flex justify-center gap-x-20 flex-wrap md:flex-nowrap">
+    <!-- 声 1 -->
+    <div class="flex flex-col items-center gap-4 w-64 shrink-0">
+      <!-- 吹き出し -->
+      <div class="relative bg-base-300 text-secondary text-base leading-relaxed
+                  px-4 py-3 rounded-xl text-center w-64 h-32
+                  flex items-center justify-center">
+        患者情報が揃っていない中で、
+        その場対応になってしまう…
+        納得感のある説明ができたか不安になる
 
-          <div class="card bg-base-200/60">
-            <div class="card-body text-sm">
-              <p>
-                「今日はこの方に、どう伝えるか」を
-                迷ってしまう・・・
-              </p>
-            </div>
-          </div>
+        <!-- とんがり -->
+        <div class="absolute left-1/2 -bottom-2 -translate-x-1/2
+                    w-0 h-0
+                    border-l-8 border-r-8 border-t-8
+                    border-l-transparent border-r-transparent
+                    border-t-base-300">
         </div>
       </div>
 
-      <section class="py-20">
-        <h2 class="text-2xl font-bold text-center mb-12">
-          日々の栄養指導を支える、2つの機能
-        </h2>
+      <!-- 人物イラスト -->
+      <div class="w-28 opacity-90">
+        <%= image_tag "person_1.svg",
+              alt: "悩んでいる栄養士",
+              class: "w-full h-auto" %>
+      </div>
+    </div>
 
-        <div class="grid md:grid-cols-2 gap-8">
-          <!-- 指導ライブラリ -->
-          <div class="card bg-base-100 shadow-md">
-            <div class="card-body">
-              <h3 class="card-title text-primary">指導ライブラリ</h3>
-                <p class="text-gray-600">栄養士自身のナレッジを一元管理。 日々の指導で使う資料やメモを、いつでも取り出せます。</p>
-                <ul class="list-disc list-inside text-sm text-gray-500 mt-4 space-y-1">
-                  <li>指導ツール（画像・PDF）管理</li>
-                  <li>ナレッジメモ（指導時の確認事項・伝えたいポイント）</li>
-                </ul>
-            </div>
-          </div>
+    <!-- 声 2 -->
+    <div class="flex flex-col items-center gap-4 w-64 shrink-0">
+      <!-- 吹き出し -->
+      <div class="relative bg-base-300 text-secondary text-base leading-relaxed
+                  px-4 py-3 rounded-xl text-center w-64 h-32
+                  flex items-center justify-center">
+        その場対応では、用意していた資料も
+        結局うまく使えずに終わることが多い
 
-          <!-- クイックアドバイス -->
-          <div class="card bg-base-100 shadow-md">
-            <div class="card-body">
-              <h3 class="card-title text-primary">クイックアドバイス</h3>
-                <p class="text-gray-600"> 疾患名や生活習慣を選択するだけで、 患者に合わせたアドバイス文のヒントをAIが生成します。</p>
-                <ul class="list-disc list-inside text-sm text-gray-500 mt-4 space-y-1"> <li>疾患・生活習慣・食生活を選択</li>
-                <li>指導文作成のヒントを自動生成</li>
-              </ul>
-            </div>
-          </div>
+        <!-- とんがり -->
+        <div class="absolute left-1/2 -bottom-2 -translate-x-1/2
+                    w-0 h-0
+                    border-l-8 border-r-8 border-t-8
+                    border-l-transparent border-r-transparent
+                    border-t-base-300">
         </div>
-      </section>
+      </div>
+
+      <div class="w-28 opacity-90">
+        <%= image_tag "person_2.svg",
+              alt: "迷っている指導者",
+              class: "w-full h-auto" %>
+      </div>
+    </div>
+
+    <!-- 声 3 -->
+    <div class="flex flex-col items-center gap-4 w-64 shrink-0">
+      <!-- 吹き出し -->
+      <div class="relative bg-base-300 text-secondary text-base leading-relaxed
+                  px-4 py-3 rounded-xl text-center w-64 h-32
+                  flex items-center justify-center">
+        「この伝え方でよかったのか」と、
+        あとから迷うことがある…
+        なんとなく、指導の場が不安になる
+        <!-- とんがり -->
+        <div class="absolute left-1/2 -bottom-2 -translate-x-1/2
+                    w-0 h-0
+                    border-l-8 border-r-8 border-t-8
+                    border-l-transparent border-r-transparent
+                    border-t-base-300">
+        </div>
+      </div>
+
+      <div class="w-28 opacity-90">
+        <%= image_tag "person_3.svg",
+              alt: "困っている指導者",
+              class: "w-full h-auto" %>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+
+  <!-- ===================== -->
+  <!-- サービス概要 -->
+  <!-- ===================== -->
+  <%# <section class="mt-28 max-w-3xl mx-auto text-center">
+    <h2 class="text-2xl font-bold mb-6">
+      栄養指導ポケットとは
+    </h2>
+    <p class="text-secondary/70 leading-relaxed">
+      栄養指導ポケットは、調剤薬局での栄養指導に特化した
+      ナレッジ管理と判断支援のためのツールです。
+      <br /><br />
+      疾患別に指導媒体やメモを整理し、
+      患者特性に応じた「今日、この方にどう伝えるか」を
+      考えるためのヒントを提供します。
+    </p>
+  </section> %>
+
+  <!-- ===================== -->
+  <!-- 機能紹介 -->
+  <!-- ===================== -->
+<section
+  id="introduction"
+  class="py-28 bg-primary/20 mt-28"
+>
+  <div class="container mx-auto px-6">
+
+    <!-- セクションヘッダー -->
+    <div class="text-center max-w-3xl mx-auto mb-20">
+      <h2 class="text-2xl font-bold leading-relaxed mb-6">
+        栄養指導ポケットでできること
+      </h2>
+
+      <div class="mx-auto mt-4 mb-6 h-1 w-16 bg-primary rounded"></div>
+    </div>
+
+    <!-- 機能一覧 -->
+    <div class="grid md:grid-cols-3">
+
+      <!-- 機能1 -->
+      <div class="card bg-base-100 shadow-lg max-w-xs mx-auto">
+        <figure class="px-6 pt-6">
+          <%= image_tag "counseling.svg",
+            alt: "疾患別ナレッジ管理 イメージ",
+            class: "rounded-lg" %>
+        </figure>
+        <div class="card-body">
+          <h3 class="card-title text-base">
+            疾患別ナレッジ管理
+          </h3>
+          <p class="text-sm text-secondary/70 leading-relaxed">
+            疾患別に指導資料（画像・PDF）や
+            ナレッジメモを整理。
+            自分専用の指導手引として蓄積し、
+            「いつもの指導」をすぐに再現できます。
+          </p>
+        </div>
+      </div>
+
+      <!-- 機能2 -->
+      <div class="card bg-base-100 shadow-lg max-w-xs mx-auto">
+        <figure class="px-6 pt-6">
+          <%= image_tag "counseling.svg",
+            alt: "指導媒体の一元管理 イメージ",
+            class: "rounded-lg" %>
+        </figure>
+        <div class="card-body">
+          <h3 class="card-title text-base">
+            検索・タグ対応の指導媒体管理
+          </h3>
+          <p class="text-sm text-secondary/70 leading-relaxed">
+            整理した資料は、
+            タグ付けや検索機能により、必要な情報をすぐ提示できます。
+          </p>
+        </div>
+      </div>
+
+      <!-- 機能3 -->
+      <div class="card bg-base-100 shadow-lg max-w-xs mx-auto">
+        <figure class="px-6 pt-6">
+          <%= image_tag "counseling.svg",
+            alt: "クイックアドバイス イメージ",
+            class: "rounded-lg" %>
+        </figure>
+        <div class="card-body">
+          <h3 class="card-title text-base">
+            患者特性に応じたクイックアドバイス
+          </h3>
+          <p class="text-sm text-secondary/70 leading-relaxed">
+            疾患・生活習慣・性格傾向を選ぶだけで、
+            その患者さんに合った
+            一言アドバイスのヒントをAIが提案します。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- ===================== -->
+  <!-- CTA -->
+  <!-- ===================== -->
+  <section class="text-center py-24">
+    <h2 class="text-2xl font-bold mb-6">
+      栄養指導を、もっと安心できる時間へ
+    </h2>
+    <p class="text-secondary/70 mb-8">
+      「何を伝えよう」をサポートし、コミュニケーションに集中できる時間を
+    </p>
+    <%= link_to new_user_registration_path, class: "btn btn-primary btn-wide rounded-4xl" do %>
+      はじめてみる
+    <% end %>
+  </section>
     <% end %>
 </div>
