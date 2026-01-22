@@ -3,6 +3,7 @@ class Library::TeachingMaterialsController < Library::BaseLibraryController
     @q =
       current_user.teaching_materials
                   .joins(:diseases)
+                  .where(diseases: { id: @disease.id })
                   .ransack(params[:q])
 
     @teaching_materials =
