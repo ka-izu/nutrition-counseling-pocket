@@ -17,8 +17,16 @@ ja:
           description: 資料の説明を登録できます
           teaching_material_diseases: 疾患を選択してください
           document: 選択してください
+      search_form:
+        placeholders:
+          search_field: タイトル・説明 
       new:
         title: "新しいアイテム（%{disease}）"
+      empty:
+        no_result: "「%{keyword}」に一致する結果はありません"
+        no_items: "登録された指導ツールはまだありません"
+      actions:
+        clear_search: "× 検索をクリア"
   defaults:
     flash_message:
       created: "%{item}を登録しました"

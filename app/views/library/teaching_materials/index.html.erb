@@ -18,9 +18,15 @@
       <% end %>
 
       <!-- 右：検索 -->
-      <div class="w-full max-w-xs">
+      <div class="relative w-full max-w-xs">
         <%= render "search_form", q: @q, url: library_disease_teaching_materials_path %>
-      </div>
+
+        <% if params[:q].present? %>
+          <%= link_to t("library.teaching_materials.actions.clear_search"),
+                library_disease_teaching_materials_path,
+                class: "absolute right-0 -bottom-5 link link-primary text-xs" %>
+        <% end %>
+</div>
     </div>
 
     <!-- 一覧 -->
@@ -89,9 +95,18 @@
             </div>
           <% end %>
         </div>
+      <% elsif params[:q].present? %>
+        <!-- 検索中だが結果なし -->
+        <p class="text-base-content/60 text-center py-12">
+          <%= t(
+          "library.teaching_materials.empty.no_result",
+          keyword: params.dig(:q, :title_or_description_cont)
+        ) %>
+        </p>
       <% else %>
-        <p class="text-sm text-base-content">
-          登録された指導ツールはまだありません。
+        <!-- 初期表示でまだ登録がない -->
+        <p class="text-base-content/60 text-center py-12">
+          <%= t("library.teaching_materials.empty.no_items") %>
         </p>
       <% end %>
     </div>
