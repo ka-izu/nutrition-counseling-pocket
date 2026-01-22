@@ -1,0 +1,13 @@
+<%= search_form_for @q, url: url, html: { class: "w-full" } do |f| %>
+  <div class="relative">
+    <!-- アイコン -->
+    <span class="pointer-events-none absolute inset-y-0 left-3 flex items-center text-base-content/50 z-10">
+      <%= render "shared/icons/magnifying-glass" %>
+    </span>
+
+    <!-- 入力欄 -->
+    <%= f.search_field :title_or_description_cont,
+          class: "input input-bordered rounded-full w-full pl-12 focus:outline-none focus:ring focus:border-accent",
+          placeholder: t(".placeholders.search_field") %>
+  </div>
+<% end %>
