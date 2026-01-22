@@ -4,6 +4,10 @@ class Library::TeachingMaterialsController < Library::BaseLibraryController
       current_user.teaching_materials
                   .joins(:diseases)
                   .where(diseases: { id: @disease.id })
+                  .includes(
+                    :diseases,
+                    document_attachment: :blob
+                  )
                   .order(created_at: :desc)
   end
 
