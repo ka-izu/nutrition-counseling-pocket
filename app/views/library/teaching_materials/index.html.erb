@@ -18,12 +18,9 @@
       <% end %>
 
       <!-- 右：検索 -->
-      <%# <div class="w-full max-w-xs">
-        <input
-          type="search"
-          placeholder="タイトルで検索"
-          class="input input-bordered w-full" />
-      </div> %>
+      <div class="w-full max-w-xs">
+        <%= render "search_form", q: @q, url: library_disease_teaching_materials_path %>
+      </div>
     </div>
 
     <!-- 一覧 -->

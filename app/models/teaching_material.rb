@@ -36,4 +36,16 @@ class TeachingMaterial < ApplicationRecord
   def thumbnail?
     document.attached? && (document.image? || document.representable?)
   end
+
+  # Ransackで検索可能な属性を明示的に許可する
+  def self.ransackable_attributes(auth_object = nil)
+    %w[title description]
+  end
+
+  # Ransackで検索条件として使用可能な関連（association）を定義する
+  # 現在は association 経由の検索は行わないため空配列とする
+  # 将来、関連モデルの属性で検索したくなった場合のみ追加する
+  def self.ransackable_associations(auth_object = nil)
+    []
+  end
 end
