@@ -48,4 +48,9 @@ class TeachingMaterial < ApplicationRecord
   def self.ransackable_associations(auth_object = nil)
     []
   end
+
+  # PDFファイルかどうかを判定する
+  def pdf?
+    document.attached? && document.blob.content_type == "application/pdf"
+  end
 end
