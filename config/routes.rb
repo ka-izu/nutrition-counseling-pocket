@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root "pages#top"
   namespace :library do
     resources :diseases, only: %i[index] do
-      resources :teaching_materials
+      resources :teaching_materials, except: %i[show]
     end
   end
 

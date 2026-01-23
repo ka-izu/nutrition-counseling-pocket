@@ -40,6 +40,7 @@
                     transition cursor-pointer"
               data-controller="card-link"
               data-card-link-url-value="<%= url_for(tm.document) %>"
+              data-card-link-target-value="<%= tm.pdf? ? '_blank' : '_self' %>"
               data-action="click->card-link#go">
 
               <!-- サムネイル -->
@@ -71,6 +72,12 @@
                 <h2 class="card-title text-sm font-semibold">
                   <%= tm.title %>
                 </h2>
+
+                <% if tm.pdf? %>
+                  <span class="absolute top-2 right-2 badge badge-secondary badge-sm">
+                    PDF
+                  </span>
+                <% end %>
 
                 <p class="text-xs text-base-content/80">
                   <%= tm.description %>
