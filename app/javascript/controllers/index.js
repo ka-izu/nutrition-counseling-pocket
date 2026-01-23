@@ -19,5 +19,8 @@ application.register("multi-select", MultiSelectController)
 import StickyHeaderController from "./sticky_header_controller"
 application.register("sticky-header", StickyHeaderController)
 
+import ThumbnailController from "./thumbnail_controller"
+application.register("thumbnail", ThumbnailController)
+
 import ToastController from "./toast_controller"
 application.register("toast", ToastController)

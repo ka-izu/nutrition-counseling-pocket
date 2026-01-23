@@ -43,12 +43,24 @@
               data-action="click->card-link#go">
 
               <!-- サムネイル -->
-              <figure class="aspect-[4/3] w-full overflow-hidden">
+              <figure
+                class="relative aspect-[4/3] w-full overflow-hidden bg-base-200"
+                data-controller="thumbnail"
+              >
+                <!-- ローディング -->
+                <div
+                  class="absolute inset-0 flex items-center justify-center"
+                  data-thumbnail-target="skeleton"
+                >
+                  <span class="skeleton w-full h-full block"></span>
+                </div>
+
                 <% if tm.thumbnail? %>
                   <%= image_tag tm.thumbnail,
-                        class: "w-full h-full object-cover" %>
+                        class: "absolute inset-0 w-full h-full object-cover",
+                        data: { action: "load->thumbnail#loaded" } %>
                 <% else %>
-                  <div class="w-full h-full flex items-center justify-center text-xs text-gray-500">
+                  <div class="absolute inset-0 flex items-center justify-center text-xs text-gray-500">
                     PDFを開く
                   </div>
                 <% end %>

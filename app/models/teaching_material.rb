@@ -13,7 +13,7 @@ class TeachingMaterial < ApplicationRecord
   # ファイルの種類とサイズのバリデーション（gem ActiveStorage Validationを使用）
   ACCEPTED_CONTENT_TYPES = %w[image/jpeg image/png application/pdf].freeze
   validates :document, content_type: ACCEPTED_CONTENT_TYPES,
-                    size: { less_than_or_equal_to: 1.megabytes }
+                    size: { less_than_or_equal_to: 5.megabytes }
 
   # 一覧表示用のサムネイルを返す
   # - 画像ファイルの場合は variant を生成
