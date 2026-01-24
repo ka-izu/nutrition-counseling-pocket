@@ -12,15 +12,13 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [ :name ])
   end
 
-  # ユーザー登録（サインアップ）完了後のリダイレクト先を指定
-  # デフォルトでは自動ログインされるが、
-  # 本アプリではログイン画面へ遷移
-  def after_sign_up_path_for(resource)
-    new_user_session_path
-  end
+  # ユーザー登録（サインアップ）後のリダイレクト先を指定
+  # デフォルトでは自動ログイン
+  # def after_sign_up_path_for(resource)
+  # end
 
   # サインアウト後のリダイレクト先を指定
-  # 以下を記述しなければ、ルートパスに遷移
+  # デフォルトではルートパスに遷移
   # def after_sign_out_path_for(resource_or_scope)
   # end
 end

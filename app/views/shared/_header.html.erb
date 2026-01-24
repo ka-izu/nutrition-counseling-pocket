@@ -13,33 +13,28 @@
     <% end %>
   </div>
 
-  <%= link_to library_diseases_path,
-    class: "
-      btn btn-ghost
-      border-0 shadow-none
-      hover:bg-transparent
-      hover:text-primary
-      focus:outline-none focus:ring-0
-      active:bg-transparent
-      flex items-center gap-2
-    " do %>
-    <%= render "shared/icons/book-open" %>
-    <span>指導ライブラリ</span>
-  <% end %>
+  <!-- 中央：ナビゲーショングループ -->
+  <div class="flex items-center mr-12">
+    <%= link_to library_diseases_path,
+      class: nav_link_class(library_diseases_path) do %>
+      <%= render "shared/icons/book-open" %>
+      <span>指導ライブラリ</span>
+    <% end %>
 
-  <%= link_to "#",
-    class: "
-      btn btn-ghost
-      border-0 shadow-none
-      hover:bg-transparent
-      hover:text-primary
-      focus:outline-none focus:ring-0
-      active:bg-transparent
-      flex items-center gap-2
-    " do %>
-    <%= render "shared/icons/light-bulb" %>
-    <span>クイックアドバイス</span>
-  <% end %>
+    <%= link_to "#",
+      class: "
+        btn btn-ghost
+        border-0 shadow-none
+        hover:bg-transparent
+        hover:text-primary
+        focus:outline-none focus:ring-0
+        active:bg-transparent
+        flex items-center gap-2
+      " do %>
+      <%= render "shared/icons/light-bulb" %>
+      <span>クイックアドバイス（準備中）</span>
+    <% end %>
+  </div>
 
   <!-- 右側：ログインボタン -->
   <div class="flex-none">
@@ -48,13 +43,7 @@
       <div
         tabindex="0"
         role="button"
-        class="
-          btn btn-ghost btn-circle
-          border-0 shadow-none
-          hover:shadow-none
-          hover:bg-transparent
-          focus:outline-none focus:ring-0
-        "
+        class="btn btn-circle"
       >
         <%= render "shared/icons/user" %>
       </div>

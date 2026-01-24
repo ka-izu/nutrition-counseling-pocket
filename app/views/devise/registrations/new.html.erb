@@ -1,4 +1,4 @@
-<div class="min-h-screen flex items-center justify-center px-4">
+<section class="flex items-center justify-center mx-auto max-w-5xl px-6 my-16">
   <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-md">
     <h2 class="text-2xl font-bold text-center text-base-content mb-6"><%= t('devise.registrations.new.title') %></h2>
 
@@ -10,7 +10,7 @@
         <%= f.label :name, class: "block text-base font-medium text-base-content mb-1" %>
         <%= f.text_field :name,
               placeholder: t('devise.shared.placeholders.name'),
-              class: "w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-accent" %>
+              class: "w-full px-3 py-2 border border-base-300 rounded-md focus:outline-none focus:ring focus:border-accent" %>
       </div> 
 
       <!-- メールアドレス -->
@@ -20,7 +20,7 @@
               placeholder: t('devise.shared.placeholders.email'),
               autofocus: true,
               autocomplete: "email",
-              class: "w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-accent" %>
+              class: "w-full px-3 py-2 border border-base-300 rounded-md focus:outline-none focus:ring focus:border-accent" %>
       </div>
 
       <!-- Password -->
@@ -28,13 +28,13 @@
         <div class="flex items-center justify-start mb-1">
           <%= f.label :password, class: "block text-base font-medium text-base-content" %>
           <% if @minimum_password_length %>
-            <span class="text-xs text-gray-500 ml-2"><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></span>
+            <span class="text-xs text-base-content/50 ml-2"><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></span>
           <% end %>
         </div>
         <%= f.password_field :password,
               placeholder: t('devise.shared.placeholders.password'),
               autocomplete: "new-password",
-              class: "w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-accent" %>
+              class: "w-full px-3 py-2 border border-base-300 rounded-md focus:outline-none focus:ring focus:border-accent" %>
       </div>
 
       <!-- Password Confirmation -->
@@ -43,7 +43,7 @@
         <%= f.password_field :password_confirmation,
               placeholder: t('devise.shared.placeholders.password_confirmation'),
               autocomplete: "new-password",
-              class: "w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-accent" %>
+              class: "w-full px-3 py-2 border border-base-300 rounded-md focus:outline-none focus:ring focus:border-accent" %>
       </div>
 
       <!-- Submit -->
@@ -60,4 +60,4 @@
             class: "text-sm hover:underline" %>
     </div>
   </div>
-</div>
+</section>
