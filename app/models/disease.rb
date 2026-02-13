@@ -11,6 +11,8 @@ class Disease < ApplicationRecord
   validates :name, presence: true
   validates :slug, presence: true, uniqueness: true
 
+  scope :available_for, ->(user) { where(user_id: [ nil, user.id ]) }
+
   def to_param
     slug
   end
