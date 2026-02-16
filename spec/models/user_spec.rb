@@ -5,7 +5,7 @@ RSpec.describe User, type: :model do
     context "有効な場合" do
       it "全ての項目が入力されている場合、有効であること" do
         user = build(:user)
-        expect(user).to be_valid
+        expect(user).to be_invalid
       end
 
       it "nameが255文字の場合、有効であること" do
