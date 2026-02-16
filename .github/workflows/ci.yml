@@ -69,6 +69,20 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'yarn'
+
+      - name: Install JS dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build assets
+        run: |
+          yarn build
+          yarn build:css
+
       - name: Prepare database
         env:
           RAILS_ENV: test
