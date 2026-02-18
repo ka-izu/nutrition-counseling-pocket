@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe TeachingMaterial, type: :model do
   describe "バリデーションチェック" do
     it "指導ツールを作成できること" do
-      teaching_material = build(:teaching_material)
+      teaching_material = build(:teaching_material, :with_pdf)
       expect(teaching_material).to be_valid
     end
 
@@ -52,7 +52,7 @@ RSpec.describe TeachingMaterial, type: :model do
 
     context "PDFの場合" do
       it "preview を返す" do
-        teaching_material = build(:teaching_material)
+        teaching_material = build(:teaching_material, :with_pdf)
         expect(teaching_material.thumbnail).to be_present
       end
     end
@@ -72,7 +72,7 @@ RSpec.describe TeachingMaterial, type: :model do
 
   describe "#pdf?" do
     it "PDFなら true" do
-      teaching_material = build(:teaching_material)
+      teaching_material = build(:teaching_material, :with_pdf)
       expect(teaching_material.pdf?).to be true
     end
 

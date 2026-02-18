@@ -10,20 +10,22 @@ FactoryBot.define do
       material.diseases << build(:disease, user: material.user)
     end
 
-    # 指導ツールとして PDFファイル をセット
-    after(:build) do |material|
-      material.document.attach(
-        io: Rails.root.join("spec/fixtures/files/sample.pdf").open,
-        filename: "sample.pdf",
-        content_type: "application/pdf"
-      )
+    # trait
+    # --- 添付ファイル関連 ---
+    # PDFファイル をアタッチ
+    trait :with_pdf do
+      after(:build) do |material|
+        material.document.attach(
+          io: Rails.root.join("spec/fixtures/files/sample.pdf").open,
+          filename: "sample.pdf",
+          content_type: "application/pdf"
+        )
+      end
     end
 
-    # 許可されているファイル形式（.png）をアタッチ
+    # 画像ファイル（.png）をアタッチ
     trait :with_image_file do
       after(:build) do |material|
-        material.document.detach if material.document.attached?
-
         material.document.attach(
           io: Rails.root.join("spec/fixtures/files/sample.png").open,
           filename: "sample.png",
@@ -35,8 +37,6 @@ FactoryBot.define do
     # 許可されていないファイル形式（.txt）をアタッチ
     trait :with_invalid_file do
       after(:build) do |material|
-        material.document.detach if material.document.attached?
-
         material.document.attach(
           io: Rails.root.join("spec/fixtures/files/sample.txt").open,
           filename: "sample.txt",
@@ -45,11 +45,9 @@ FactoryBot.define do
       end
     end
 
-    # 5.1MBのファイルをアタッチ
+    # 5.1MBのファイル（バリデーションでは 5MB 以下を許可）をアタッチ
     trait :with_large_pdf do
       after(:build) do |material|
-        material.document.detach if material.document.attached?
-
         material.document.attach(
           io: Rails.root.join("spec/fixtures/files/large.pdf").open,
           filename: "large.pdf",
@@ -60,8 +58,19 @@ FactoryBot.define do
 
     # ファイル未添付
     trait :without_document do
-      after(:build) do |material|
-        material.document.detach if material.document.attached?
+      after(:build) { |material| material.document.detach }
+    end
+    # -----
+
+    # --- 疾患紐付け関連 ---
+    # disease紐付け
+    trait :with_disease do
+      transient do
+        disease { build(:disease) }
+      end
+
+      after(:create) do |material, evaluator|
+        material.diseases << evaluator.disease
       end
     end
 
@@ -69,5 +78,6 @@ FactoryBot.define do
     trait :without_diseases do
       after(:build) { |material| material.diseases = [] }
     end
+    # -----
   end
 end
