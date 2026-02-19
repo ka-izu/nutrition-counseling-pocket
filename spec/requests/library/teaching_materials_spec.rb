@@ -47,6 +47,19 @@ RSpec.describe "Library::TeachingMaterials", type: :request do
         expect(response).to have_http_status(:not_found)
       end
     end
+
+    context "指導ツール検索" do
+      before do
+        sign_in user
+      end
+
+      it "検索パラメータを受け取れること" do
+        get library_disease_teaching_materials_path(disease),
+          params: { q: { title_or_description_cont: "糖尿病" } }
+
+        expect(response).to have_http_status(:ok)
+      end
+    end
   end
 
   describe "POST /library/diseases/:disease_id/teaching_materials" do
