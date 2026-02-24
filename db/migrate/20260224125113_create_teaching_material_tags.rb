@@ -9,7 +9,7 @@ class CreateTeachingMaterialTags < ActiveRecord::Migration[7.2]
 
     # 同じ教材への同一タグの二重付与を拒否
     add_index :teaching_material_tags,
-              [:teaching_material_id, :tag_id],
+              [ :teaching_material_id, :tag_id ],
               unique: true,
               name: "index_tm_tags_uniqueness"
   end
