@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_01_19_011208) do
+ActiveRecord::Schema[7.2].define(version: 2026_02_24_125113) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -52,6 +52,15 @@ ActiveRecord::Schema[7.2].define(version: 2026_01_19_011208) do
     t.index ["user_id"], name: "index_diseases_on_user_id"
   end
 
+  create_table "tags", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "name"], name: "index_tags_on_user_id_and_name", unique: true
+    t.index ["user_id"], name: "index_tags_on_user_id"
+  end
+
   create_table "teaching_material_diseases", force: :cascade do |t|
     t.bigint "teaching_material_id", null: false
     t.bigint "disease_id", null: false
@@ -59,6 +68,16 @@ ActiveRecord::Schema[7.2].define(version: 2026_01_19_011208) do
     t.datetime "updated_at", null: false
     t.index ["disease_id"], name: "index_teaching_material_diseases_on_disease_id"
     t.index ["teaching_material_id"], name: "index_teaching_material_diseases_on_teaching_material_id"
+  end
+
+  create_table "teaching_material_tags", force: :cascade do |t|
+    t.bigint "teaching_material_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tag_id"], name: "index_teaching_material_tags_on_tag_id"
+    t.index ["teaching_material_id", "tag_id"], name: "index_tm_tags_uniqueness", unique: true
+    t.index ["teaching_material_id"], name: "index_teaching_material_tags_on_teaching_material_id"
   end
 
   create_table "teaching_materials", force: :cascade do |t|
@@ -85,7 +104,10 @@ ActiveRecord::Schema[7.2].define(version: 2026_01_19_011208) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "diseases", "users"
+  add_foreign_key "tags", "users"
   add_foreign_key "teaching_material_diseases", "diseases"
   add_foreign_key "teaching_material_diseases", "teaching_materials"
+  add_foreign_key "teaching_material_tags", "tags"
+  add_foreign_key "teaching_material_tags", "teaching_materials"
   add_foreign_key "teaching_materials", "users"
 end
