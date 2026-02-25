@@ -5,6 +5,8 @@ class TeachingMaterial < ApplicationRecord
 
   has_many :teaching_material_diseases, dependent: :destroy
   has_many :diseases, through: :teaching_material_diseases
+  has_many :teaching_material_tags, dependent: :destroy
+  has_many :tags, through: :teaching_material_tags
 
   validates :title, presence: true
   validates :teaching_material_diseases, presence: true
