@@ -57,7 +57,7 @@ class TeachingMaterial < ApplicationRecord
   # 現在は association 経由の検索は行わないため空配列とする
   # 将来、関連モデルの属性で検索したくなった場合のみ追加する
   def self.ransackable_associations(auth_object = nil)
-    []
+    %w[tags]
   end
 
   # PDFファイルかどうかを判定する

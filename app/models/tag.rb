@@ -7,4 +7,8 @@ class Tag < ApplicationRecord
   validates :name, presence: true,
                    uniqueness: { scope: :user_id },
                    length: { maximum: 15 }
+
+  def self.ransackable_attributes(auth_object = nil)
+    %w[name]
+  end
 end
