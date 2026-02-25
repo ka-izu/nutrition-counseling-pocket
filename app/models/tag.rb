@@ -6,5 +6,5 @@ class Tag < ApplicationRecord
 
   validates :name, presence: true,
                    uniqueness: { scope: :user_id },
-                   length: { maximum: 20 }
+                   length: { maximum: 15 }
 end

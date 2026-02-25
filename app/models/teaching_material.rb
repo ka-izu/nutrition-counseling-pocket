@@ -1,7 +1,10 @@
 class TeachingMaterial < ApplicationRecord
+  TAG_NAME_MAX_LENGTH = 15
+
   attr_writer :tag_names
 
-  after_save :save_tags
+  validate :validate_tag_names
+  before_save :assign_tags, if: :tag_names_provided?
 
   belongs_to :user
 
@@ -9,7 +12,9 @@ class TeachingMaterial < ApplicationRecord
 
   has_many :teaching_material_diseases, dependent: :destroy
   has_many :diseases, through: :teaching_material_diseases
-  has_many :teaching_material_tags, dependent: :destroy
+  has_many :teaching_material_tags,
+            inverse_of: :teaching_material,
+            dependent: :destroy
   has_many :tags, through: :teaching_material_tags
 
   validates :title, presence: true
@@ -66,13 +71,31 @@ class TeachingMaterial < ApplicationRecord
 
   private
 
-  def save_tags
-    return if @tag_names.nil?
+  def assign_tags
+    names = parsed_tag_names
 
-    tag_list = @tag_names.split(",").map(&:strip).reject(&:blank?).uniq
-
-    self.tags = tag_list.map do |tag_name|
-      Tag.find_or_create_by(name: tag_name, user_id: user_id)
+    self.tags = names.map do |name|
+      Tag.find_or_create_by!(name: name, user_id: user_id)
     end
+  end
+
+  def validate_tag_names
+    return if @tag_names.blank?
+
+    names = parsed_tag_names
+
+    names.each do |name|
+      if name.length > TAG_NAME_MAX_LENGTH
+        errors.add(:tag_names, "は#{TAG_NAME_MAX_LENGTH}文字以内で入力してください")
+      end
+    end
+  end
+
+  def tag_names_provided?
+    !@tag_names.nil?
+  end
+
+  def parsed_tag_names
+    @tag_names.to_s.split(",").map(&:strip).reject(&:blank?).uniq
   end
 end

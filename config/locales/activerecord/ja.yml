@@ -8,7 +8,7 @@ ja:
         description: 説明
         teaching_material_diseases: 対象疾患
         document: 指導ツール
-        tag: タグ
+        tag_names: タグ
     errors:
       models:
         teaching_material:
