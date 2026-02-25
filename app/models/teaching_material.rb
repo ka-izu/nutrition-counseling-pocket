@@ -1,4 +1,8 @@
 class TeachingMaterial < ApplicationRecord
+  attr_writer :tag_names
+
+  after_save :save_tags
+
   belongs_to :user
 
   has_one_attached :document
@@ -54,5 +58,21 @@ class TeachingMaterial < ApplicationRecord
   # PDFファイルかどうかを判定する
   def pdf?
     document.attached? && document.blob.content_type == "application/pdf"
+  end
+
+  def tag_names
+    @tag_names || tags.pluck(:name).join(", ")
+  end
+
+  private
+
+  def save_tags
+    return if @tag_names.nil?
+
+    tag_list = @tag_names.split(",").map(&:strip).reject(&:blank?).uniq
+
+    self.tags = tag_list.map do |tag_name|
+      Tag.find_or_create_by(name: tag_name, user_id: user_id)
+    end
   end
 end
