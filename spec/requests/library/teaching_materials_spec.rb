@@ -91,6 +91,53 @@ RSpec.describe "Library::TeachingMaterials", type: :request do
         expect(response).to redirect_to(library_disease_teaching_materials_path(disease))
       end
     end
+
+    context "タグ付きで作成した場合" do
+      before do
+        sign_in user
+      end
+
+      it "tag_namesからタグが生成され紐づくこと" do
+        teaching_material_params = attributes_for(:teaching_material).merge(
+          document: file,
+          disease_ids: [ disease.id ],
+          tag_names: "Ruby, Rails"
+        )
+
+        expect {
+          post library_disease_teaching_materials_path(disease),
+              params: { teaching_material: teaching_material_params }
+        }.to change(Tag, :count).by(2)
+
+        material = TeachingMaterial.last
+
+        expect(material.tags.pluck(:name))
+          .to contain_exactly("Ruby", "Rails")
+      end
+    end
+
+    context "既存タグがある場合" do
+      before do
+        sign_in user
+      end
+
+      it "タグを新規作成しないこと（既存タグを再利用すること）" do
+        create(:tag, user: user, name: "Ruby")
+
+        teaching_material_params = attributes_for(:teaching_material).merge(
+          document: file,
+          disease_ids: [ disease.id ],
+          tag_names: "Ruby"
+        )
+
+        expect {
+          post library_disease_teaching_materials_path(disease),
+              params: { teaching_material: teaching_material_params }
+        }.not_to change(Tag, :count)
+
+        expect(TeachingMaterial.last.tags.first.name).to eq("Ruby")
+      end
+    end
   end
 
   describe "PATCH /library/diseases/:disease_id/teaching_materials/:id" do
@@ -130,6 +177,27 @@ RSpec.describe "Library::TeachingMaterials", type: :request do
         }
 
         expect(response).to have_http_status(:not_found)
+      end
+    end
+
+    context "タグを更新した場合" do
+      let!(:material) do
+        create(:teaching_material, :with_pdf, user: user, diseases: [ disease ]).tap do |m|
+          m.tag_names = "Ruby, Rails"
+          m.save!
+        end
+      end
+
+      before do
+        sign_in user
+      end
+
+      it "タグを付け替えられること" do
+        patch library_disease_teaching_material_path(disease, material), params: {
+          teaching_material: { tag_names: "UpdatedTag" }
+        }
+
+        expect(material.reload.tags.pluck(:name)).to contain_exactly("UpdatedTag")
       end
     end
   end
