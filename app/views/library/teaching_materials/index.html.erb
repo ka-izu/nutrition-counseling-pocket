@@ -83,11 +83,11 @@
                   <%= tm.description %>
                 </p>
 
-                <!-- 疾患タグ -->
+                <!-- タグ -->
                 <div class="flex flex-wrap gap-1 mt-2">
-                  <% tm.diseases.each do |disease| %>
-                    <span class="badge badge-outline badge-xs">
-                      <%= disease.name %>
+                  <% tm.tags.each do |tag| %>
+                    <span class="badge badge-outline badge-primary badge-sm">
+                      <%= tag.name %>
                     </span>
                   <% end %>
                 </div>

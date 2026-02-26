@@ -11,12 +11,14 @@ ja:
           select_file: ファイルを選択
         hints:
           diseases: 1つ以上選択してください（複数選択可）
-          document: ※ JPEG / PNG / PDF（5MB以下）に対応しています
+          document: JPEG / PNG / PDF（5MB以下）に対応しています
+          tag: カンマ ( , ) で区切ると複数タグを登録できます
         placeholders:
           title: 例：食事療法の基本説明
           description: 資料の説明を登録できます
           teaching_material_diseases: 疾患を選択してください
           document: 選択してください
+          tag: 例：外食, 減塩
       search_form:
         placeholders:
           search_field: タイトル・説明 

@@ -83,6 +83,6 @@ class Library::TeachingMaterialsController < Library::BaseLibraryController
 
   def teaching_material_params
     params.require(:teaching_material)
-          .permit(:title, :description, :document, disease_ids: [])
+          .permit(:title, :description, :document, :tag_names, disease_ids: [])
   end
 end
