@@ -89,8 +89,8 @@ RSpec.describe TeachingMaterial, type: :model do
   end
 
   describe ".ransackable_associations" do
-    it "関連検索は許可していないこと" do
-      expect(TeachingMaterial.ransackable_associations).to eq([])
+    it "Tagテーブルの関連検索を許可していること" do
+      expect(TeachingMaterial.ransackable_associations).to eq(%w[tags])
     end
   end
 end
