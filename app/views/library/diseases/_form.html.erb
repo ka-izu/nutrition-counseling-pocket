@@ -1,0 +1,32 @@
+<%= form_with model: [:library, disease], local: true do |f| %>
+  <% if disease.errors.any? %>
+    <div class="mb-6 border border-l-4 rounded-sm border-error bg-error/10 p-4 text-error">
+      <ul class="list-disc pl-5">
+        <% disease.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="bg-white pt-8 pb-10 px-10 rounded-xl shadow-lg space-y-6 max-w-xl">
+
+    <!-- 疾患名 -->
+    <div>
+      <%= f.label :name,
+            class: "block text-sm font-medium mb-1" %>
+
+      <%= f.text_field :name,
+            placeholder: t(".placeholders.name"),
+            class: "w-full border rounded-sm p-2 text-sm
+                    border-base-300
+                    focus:outline-none focus:ring-2 focus:ring-primary" %>
+    </div>
+
+    <!-- 保存 -->
+    <div class="flex justify-center pt-6">
+      <%= f.submit nil, class: "btn btn-primary px-8" %>
+    </div>
+
+  </div>
+<% end %>

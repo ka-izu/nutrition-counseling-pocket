@@ -2,6 +2,7 @@ ja:
   activerecord:
     models:
       teaching_material: 指導ツール
+      disease: 疾患
     attributes:
       teaching_material:
         title: タイトル
@@ -9,6 +10,8 @@ ja:
         teaching_material_diseases: 対象疾患
         document: 指導ツール
         tag_names: タグ
+      disease:
+        name: 疾患名
     errors:
       models:
         teaching_material:

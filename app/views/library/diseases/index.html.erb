@@ -1,11 +1,13 @@
 <section class="mx-auto max-w-5xl px-6 my-16">
   <div class="max-w-5xl mx-auto">
     <div class="flex justify-between items-center mb-6">
-      <h1 class="text-xl font-bold">疾患一覧</h1>
-      <%= link_to "#",
+      <h1 class="text-xl font-bold">
+        <%= t(".title") %>
+      </h1>
+      <%= link_to new_library_disease_path,
                   class: "btn btn-primary" do %>
         <%= render "shared/icons/plus" %>
-        新しい疾患を追加（準備中）
+        <%= t(".new") %>
       <% end %>
     </div>
 
