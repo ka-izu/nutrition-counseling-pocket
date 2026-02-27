@@ -29,6 +29,21 @@ ja:
         no_items: "登録された指導ツールはまだありません"
       actions:
         clear_search: "× 検索をクリア"
+    diseases:
+      form:
+        placeholders:
+          name: 例：過敏性大腸炎
+      index:
+        title: 疾患一覧
+        new: 新しい疾患名を追加
+        system_section: システム提供
+        user_section: 追加した疾患
+        actions:
+          edit: "編集"
+          delete: "削除"
+          confirm_delete: "削除しますか？"
+      new:
+        title: 新しいアイテム
   defaults:
     flash_message:
       created: "%{item}を登録しました"
@@ -38,3 +53,6 @@ ja:
       deleted: "%{item}を削除しました"
       require_login: ログインしてください
       not_authorized: 権限がありません
+    edit: 編集
+    delete: 削除
+    delete_confirm: 削除しますか？

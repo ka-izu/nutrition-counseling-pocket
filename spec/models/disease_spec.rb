@@ -58,4 +58,23 @@ RSpec.describe Disease, type: :model do
       expect(subject).not_to include(others_disease)
     end
   end
+
+  describe "#system_provided?" do
+    context "user_idがnilの場合" do
+      it "trueを返すこと（システム提供データ）" do
+        disease = build(:disease, user_id: nil)
+
+        expect(disease.system_provided?).to be true
+      end
+    end
+
+    context "userが存在する場合" do
+      it "falseを返すこと（ユーザー作成データ）" do
+        user = create(:user)
+        disease = build(:disease, user: user)
+
+        expect(disease.system_provided?).to be false
+      end
+    end
+  end
 end
