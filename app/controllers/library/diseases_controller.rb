@@ -1,6 +1,17 @@
 class Library::DiseasesController < Library::BaseLibraryController
+  before_action :set_disease, only: %i[edit update]
+
   def index
-    @diseases = Disease.where(user_id: [ nil, current_user.id ])
+    # システム提供
+    @system_diseases =
+      Disease
+        .where(user_id: nil)
+        .order(:id)
+
+    # ユーザー作成
+    @user_diseases =
+      current_user.diseases
+                  .order(updated_at: :desc)
   end
 
   def new
@@ -16,6 +27,23 @@ class Library::DiseasesController < Library::BaseLibraryController
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def edit
+  end
+
+  def update
+    if @disease.update(disease_params)
+      redirect_to library_diseases_path, notice: "疾患を更新しました"
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def set_disease
+    @disease = current_user.diseases.find_by!(slug: params[:id])
   end
 
   def disease_params

@@ -11,17 +11,67 @@
       <% end %>
     </div>
 
-    <ul class="bg-base-100 rounded-box">
-      <% @diseases.each do |disease| %>
-        <li class="border-base-300 border-b first:border-t-1">
+  <!-- システム提供 -->
+  <% if @system_diseases.any? %>
+    <h2 class="text-sm font-semibold text-base-content/60 mb-2">
+      <%= t(".system_section") %>
+    </h2>
+
+    <ul class="bg-base-100 rounded-box divide-y divide-base-300 mb-8">
+      <% @system_diseases.each do |disease| %>
+        <li class="flex items-center hover:bg-base-200 p-4">
           <%= link_to library_disease_teaching_materials_path(disease),
-                      class: "flex items-center gap-4 p-3 hover:bg-base-200 w-full block" do %>
+                      class: "flex items-center gap-4 flex-1" do %>
             <%= render "shared/icons/document-text" %>
-            <span class="font-medium"><%= disease.name %></span>
+            <span><%= disease.name %></span>
           <% end %>
         </li>
       <% end %>
     </ul>
+  <% end %>
+
+  <!-- ユーザー作成 -->
+  <% if @user_diseases.any? %>
+    <h2 class="text-sm font-semibold text-base-content/60 mb-2">
+      <%= t(".user_section") %>
+    </h2>
+
+    <ul class="bg-base-100 rounded-box divide-y divide-base-300">
+      <% @user_diseases.each do |disease| %>
+        <li class="flex items-center hover:bg-base-200">
+
+          <!-- 本体リンク -->
+          <%= link_to library_disease_teaching_materials_path(disease),
+                      class: "flex items-center gap-4 p-4 flex-1 min-w-0" do %>
+            <%= render "shared/icons/document-text" %>
+            <span class="truncate"><%= disease.name %></span>
+          <% end %>
+
+          <!-- 三点メニュー（ユーザーのみ表示） -->
+          <div class="dropdown dropdown-end pr-2">
+            <label tabindex="0" class="btn btn-ghost btn-sm btn-circle">
+              <%= render "shared/icons/ellipsis-vertical" %>
+            </label>
+
+            <ul tabindex="0"
+                class="dropdown-content menu bg-base-100 rounded-box w-40 p-2 shadow">
+              <li>
+                <%= link_to t("defaults.edit"), edit_library_disease_path(disease) %>
+              </li>
+              <li>
+                <%= link_to t("defaults.delete"),
+                            library_disease_path(disease),
+                            data: { turbo_method: :delete,
+                                    turbo_confirm: t("defaults.delete_confirm") },
+                            class: "text-error" %>
+              </li>
+            </ul>
+          </div>
+
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
 
   </div>
 </section>

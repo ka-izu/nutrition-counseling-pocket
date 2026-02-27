@@ -17,6 +17,10 @@ class Disease < ApplicationRecord
     slug
   end
 
+  def system_provided?
+    user_id.nil?
+  end
+
   private
 
   def generate_slug
