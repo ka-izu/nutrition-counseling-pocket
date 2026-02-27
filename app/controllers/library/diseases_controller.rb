@@ -1,5 +1,5 @@
 class Library::DiseasesController < Library::BaseLibraryController
-  before_action :set_disease, only: %i[edit update]
+  before_action :set_disease, only: %i[edit update destroy]
 
   def index
     # システム提供
@@ -34,10 +34,19 @@ class Library::DiseasesController < Library::BaseLibraryController
 
   def update
     if @disease.update(disease_params)
-      redirect_to library_diseases_path, notice: "疾患を更新しました"
+      redirect_to library_diseases_path,
+      notice: t("defaults.flash_message.updated", item: Disease.model_name.human)
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @disease.destroy
+
+    redirect_to library_diseases_path,
+      status: :see_other,
+      notice: t("defaults.flash_message.deleted", item: Disease.model_name.human)
   end
 
   private
