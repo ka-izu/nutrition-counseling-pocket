@@ -81,4 +81,21 @@ RSpec.describe "Library::Diseases", type: :request do
       end
     end
   end
+
+  describe "DELETE /library/diseases/:id" do
+    context "ログイン済み" do
+      before { sign_in user }
+
+      let!(:disease) { create(:disease, user: user) }
+
+      it "自分の疾患を削除できること" do
+        expect {
+          delete library_disease_path(disease)
+        }.to change(Disease, :count).by(-1)
+
+        expect(response).to have_http_status(:see_other)
+        expect(response).to redirect_to(library_diseases_path)
+      end
+    end
+  end
 end
