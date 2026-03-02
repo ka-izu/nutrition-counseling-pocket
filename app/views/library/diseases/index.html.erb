@@ -13,10 +13,6 @@
 
   <!-- システム提供 -->
   <% if @system_diseases.any? %>
-    <h2 class="text-sm font-semibold text-base-content/60 mb-2">
-      <%= t(".system_section") %>
-    </h2>
-
     <ul class="bg-base-100 rounded-box divide-y divide-base-300 mb-8">
       <% @system_diseases.each do |disease| %>
         <li class="flex items-center hover:bg-base-200 p-4">
