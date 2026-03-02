@@ -72,14 +72,31 @@ class Library::TeachingMaterialsController < Library::BaseLibraryController
   end
 
   def autocomplete
-        @teaching_materials =
-            current_user.teaching_materials
-              .joins(:teaching_material_diseases)
-              .where(teaching_material_diseases: { disease_id: @disease.id })
-              .where("teaching_materials.title LIKE ?", "%#{params[:q]}%")
-              .select("DISTINCT teaching_materials.title")
-              .order("teaching_materials.title")
-              .limit(10)
+    q = params[:q].to_s.strip
+    # 未入力の場合はビューに何も返さず、処理終了
+    return render js: "" if q.blank?
+
+    teaching_materials =
+      current_user.teaching_materials
+        .joins(:teaching_material_diseases)
+        .left_joins(:tags)  # タグも検索対象とする
+        .where(teaching_material_diseases: { disease_id: @disease.id })
+        .where("teaching_materials.title ILIKE :q OR tags.name ILIKE :q", q: "%#{params[:q]}%")
+        .distinct
+        .limit(10)
+
+    # タイトルとタグのヒットだけ抽出
+    @autocomplete_list = []
+
+    # タイトルにヒットしたもの
+    @autocomplete_list += teaching_materials.map(&:title).select { |t| t.downcase.include?(q.downcase) }
+
+    # タグにヒットしたもの
+    @autocomplete_list += teaching_materials.flat_map do |tm|
+      tm.tags.pluck(:name).select { |tag| tag.downcase.include?(q.downcase) }
+    end
+
+    @autocomplete_list.uniq!  # 重複排除
 
     respond_to do |format|
       format.js

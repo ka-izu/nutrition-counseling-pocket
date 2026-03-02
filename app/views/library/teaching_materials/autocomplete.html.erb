@@ -1,4 +1,4 @@
-<% @teaching_materials.each do |tm| %>
+<% @autocomplete_list.each do |item| %>
   <li
     class="flex items-center justify-between
            px-3 py-2 text-sm
@@ -7,12 +7,12 @@
            hover:bg-base-200
            transition-colors duration-100"
     role="option"
-    data-autocomplete-value="<%= tm.title %>"
-    data-autocomplete-label="<%= tm.title %>">
+    data-autocomplete-value="<%= item %>"
+    data-autocomplete-label="<%= item %>">
 
     <!-- タイトル -->
     <span class="truncate">
-      <%= tm.title %>
+      <%= item %>
     </span>
   </li>
 <% end %>
