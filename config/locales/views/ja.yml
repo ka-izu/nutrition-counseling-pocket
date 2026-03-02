@@ -36,7 +36,6 @@ ja:
       index:
         title: 疾患一覧
         new: 新しい疾患名を追加
-        system_section: システム提供
         user_section: 追加した疾患
         actions:
           edit: "編集"
