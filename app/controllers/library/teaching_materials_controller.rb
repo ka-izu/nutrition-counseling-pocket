@@ -81,6 +81,21 @@ class Library::TeachingMaterialsController < Library::BaseLibraryController
                 notice: t("defaults.flash_message.deleted", item: TeachingMaterial.model_name.human)
   end
 
+  def autocomplete
+        @teaching_materials =
+            current_user.teaching_materials
+              .joins(:teaching_material_diseases)
+              .where(teaching_material_diseases: { disease_id: @disease.id })
+              .where("teaching_materials.title LIKE ?", "%#{params[:q]}%")
+              .select("DISTINCT teaching_materials.title")
+              .order("teaching_materials.title")
+              .limit(10)
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
 
   def teaching_material_params

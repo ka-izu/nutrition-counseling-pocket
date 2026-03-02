@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   root "pages#top"
   namespace :library do
     resources :diseases, except: %i[show] do
-      resources :teaching_materials, except: %i[show]
+      resources :teaching_materials, except: %i[show] do
+        get :autocomplete, on: :collection
+      end
     end
   end
 
