@@ -21,7 +21,7 @@ ja:
           tag: 例：外食, 減塩
       search_form:
         placeholders:
-          search_field: タイトル・説明 
+          search_field: タイトル・説明・タグ
       new:
         title: "新しいアイテム（%{disease}）"
       empty:
