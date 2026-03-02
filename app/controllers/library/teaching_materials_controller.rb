@@ -2,23 +2,13 @@ class Library::TeachingMaterialsController < Library::BaseLibraryController
   before_action :set_disease
 
   def index
-    # 検索条件用のベースクエリ
-    # 疾患で絞り込むために JOIN を使う（ここでは表示用の関連は考えない）
-    base =
+    @q =
       current_user.teaching_materials
                   .joins(:diseases)
-                  .where(diseases: { id: @disease.id })
+                  .ransack(params[:q])
 
-    # Ransack による検索条件の適用
-    # JOIN済みの Relation に対して検索条件を追加する
-    @q = base.ransack(params[:q])
-
-    # 表示用のクエリ
-    # 疾患での絞り込みは検索用に限定し、
-    # 表示用には教材を改めて取得して関連を正しく読み込む
     @teaching_materials =
-      TeachingMaterial
-        .where(id: @q.result.select(:id))
+      @q.result(distinct: true)
         .includes(
           :diseases,
           document_attachment: :blob
@@ -79,6 +69,38 @@ class Library::TeachingMaterialsController < Library::BaseLibraryController
     redirect_to library_disease_teaching_materials_path,
                 status: :see_other,
                 notice: t("defaults.flash_message.deleted", item: TeachingMaterial.model_name.human)
+  end
+
+  def autocomplete
+    q = params[:q].to_s.strip
+    # 未入力の場合はビューに何も返さず、処理終了
+    return render js: "" if q.blank?
+
+    teaching_materials =
+      current_user.teaching_materials
+        .joins(:teaching_material_diseases)
+        .left_joins(:tags)  # タグも検索対象とする
+        .where(teaching_material_diseases: { disease_id: @disease.id })
+        .where("teaching_materials.title ILIKE :q OR tags.name ILIKE :q", q: "%#{params[:q]}%")
+        .distinct
+        .limit(10)
+
+    # タイトルとタグのヒットだけ抽出
+    @autocomplete_list = []
+
+    # タイトルにヒットしたもの
+    @autocomplete_list += teaching_materials.map(&:title).select { |t| t.downcase.include?(q.downcase) }
+
+    # タグにヒットしたもの
+    @autocomplete_list += teaching_materials.flat_map do |tm|
+      tm.tags.pluck(:name).select { |tag| tag.downcase.include?(q.downcase) }
+    end
+
+    @autocomplete_list.uniq!  # 重複排除
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   private

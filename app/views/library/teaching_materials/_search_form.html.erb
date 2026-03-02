@@ -1,13 +1,26 @@
 <%= search_form_for @q, url: url, html: { class: "w-full" } do |f| %>
-  <div class="relative">
-    <!-- アイコン -->
-    <span class="pointer-events-none absolute inset-y-0 left-3 flex items-center text-base-content/50 z-10">
-      <%= render "shared/icons/magnifying-glass" %>
-    </span>
+  <div
+    data-controller="autocomplete"
+    data-autocomplete-url-value="<%= autocomplete_library_disease_teaching_materials_path(@disease) %>"
+    role="combobox"
+  >
+    <div class="relative">
+      <!-- アイコン -->
+      <span class="pointer-events-none absolute inset-y-0 left-3 flex items-center text-base-content/50 z-10">
+        <%= render "shared/icons/magnifying-glass" %>
+      </span>
 
-    <!-- 入力欄 -->
-    <%= f.search_field :title_or_description_or_tags_name_cont,
-          class: "input input-bordered rounded-full w-full pl-12 focus:outline-none focus:ring focus:border-accent",
-          placeholder: t(".placeholders.search_field") %>
+      <!-- 入力欄 -->
+      <%= f.search_field :title_or_description_or_tags_name_cont,
+            data: { autocomplete_target: "input" },
+            class: "input input-bordered rounded-full w-full pl-12 focus:outline-none focus:ring focus:border-accent",
+            placeholder: t(".placeholders.search_field") %>
+
+      <!-- 候補から選んだ値を保持するための隠しフィールド -->
+      <%= f.hidden_field :title, data: { autocomplete_target: "hidden" } %>
+
+      <!-- 候補値 -->
+      <ul class="list-group absolute mt-1.5 z-10 w-full shadow bg-base-100 rounded-sm" data-autocomplete-target="results"></ul>
+    </div>
   </div>
 <% end %>
