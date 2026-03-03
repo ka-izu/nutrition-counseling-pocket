@@ -31,6 +31,21 @@ RSpec.describe "Library::TeachingMaterials", type: :request do
 
         expect(response).to have_http_status(:ok)
       end
+
+      it "指定疾患に紐づく教材のみ表示されること" do
+        other_disease = create(:disease, user: user)
+
+        diabetes_material =
+          create(:teaching_material, :with_pdf, user: user, diseases: [ disease ])
+
+        hypertension_material =
+          create(:teaching_material, :with_pdf, user: user, diseases: [ other_disease ])
+
+        get library_disease_teaching_materials_path(disease)
+
+        expect(response.body).to include(diabetes_material.title)
+        expect(response.body).not_to include(hypertension_material.title)
+      end
     end
 
     context "他ユーザーの疾患を指定した場合" do
