@@ -26,6 +26,10 @@ class TeachingMaterial < ApplicationRecord
   validates :document, content_type: ACCEPTED_CONTENT_TYPES,
                     size: { less_than_or_equal_to: 5.megabytes }
 
+  scope :for_disease, ->(disease) {
+    joins(:diseases).where(diseases: { id: disease.id })
+  }
+
   # 一覧表示用のサムネイルを返す
   # - 画像ファイルの場合は variant を生成
   # - PDF などプレビュー可能なファイルの場合は preview を生成

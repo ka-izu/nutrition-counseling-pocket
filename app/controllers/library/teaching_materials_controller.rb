@@ -2,23 +2,13 @@ class Library::TeachingMaterialsController < Library::BaseLibraryController
   before_action :set_disease
 
   def index
-    # 検索条件用のベースクエリ
-    # 疾患で絞り込むために JOIN を使う（ここでは表示用の関連は考えない）
-    base =
+    @q =
       current_user.teaching_materials
-                  .joins(:diseases)
-                  .where(diseases: { id: @disease.id })
+                  .for_disease(@disease)
+                  .ransack(params[:q])
 
-    # Ransack による検索条件の適用
-    # JOIN済みの Relation に対して検索条件を追加する
-    @q = base.ransack(params[:q])
-
-    # 表示用のクエリ
-    # 疾患での絞り込みは検索用に限定し、
-    # 表示用には教材を改めて取得して関連を正しく読み込む
     @teaching_materials =
-      TeachingMaterial
-        .where(id: @q.result.select(:id))
+      @q.result(distinct: true)
         .includes(
           :diseases,
           document_attachment: :blob
