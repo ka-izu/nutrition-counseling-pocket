@@ -93,4 +93,32 @@ RSpec.describe TeachingMaterial, type: :model do
       expect(TeachingMaterial.ransackable_associations).to eq(%w[tags])
     end
   end
+
+  describe "疾患ごとのフィルタリング" do
+    let(:user) { create(:user) }
+
+    let(:diabetes) { create(:disease, name: "糖尿病") }
+    let(:hypertension) { create(:disease, name: "高血圧") }
+
+    let!(:diabetes_material) do
+      create(:teaching_material, :with_pdf, user: user).tap do |m|
+        m.diseases << diabetes
+      end
+    end
+
+    let!(:hypertension_material) do
+      create(:teaching_material, :with_pdf, user: user).tap do |m|
+        m.diseases << hypertension
+      end
+    end
+
+    it "指定疾患に紐づく教材のみ取得できる" do
+      result =
+        user.teaching_materials
+            .for_disease(diabetes)
+
+      expect(result).to contain_exactly(diabetes_material)
+      expect(result).not_to contain_exactly(hypertension_material)
+    end
+  end
 end
