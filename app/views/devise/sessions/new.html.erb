@@ -46,15 +46,35 @@
 %>
 
       <!-- Submit -->
-      <div class="flex justify-center my-8">
+      <div class="flex justify-center my-6">
         <%= f.submit t("devise.sessions.new.sign_in", default: "ログイン"),
               class: "btn btn-primary w-32 text-base font-medium" %>
       </div>
     <% end %>
 
-    <div class="divider"></div>
+    <div class="divider my-6">または</div>
 
-    <div class="text-center space-y-2">
+    <%= button_to user_google_oauth2_omniauth_authorize_path,
+      data: { turbo: false },
+      class: "w-full flex justify-center items-center
+              btn bg-white text-base border border-secondary/50 rounded-md
+              transition duration-150 ease-in-out
+              hover:bg-gray-50 hover:shadow-sm
+              active:scale-98" do %>
+      <svg aria-label="Google logo" width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <g>
+          <path fill="#34a853" d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"></path>
+          <path fill="#4285f4" d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"></path>
+          <path fill="#fbbc02" d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"></path>
+          <path fill="#ea4335" d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"></path>
+        </g>
+      </svg>
+      <span class="font-roboto font-medium">
+        Google でログイン
+      </span>
+    <% end %>
+
+    <div class="text-center mt-4">
       <%= link_to "アカウントをお持ちでない方はこちら",
             new_registration_path(resource_name),
             class: "text-sm hover:underline" %>
