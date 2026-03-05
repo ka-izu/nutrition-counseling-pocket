@@ -46,14 +46,17 @@
       </div>
 
       <!-- Submit -->
-      <div class="flex justify-center my-8">
+      <div class="flex justify-center my-6">
         <%= f.submit t('devise.registrations.new.sign_up'),
               class: "btn btn-primary w-32 text-base font-medium" %>
       </div>
     <% end %>
 
-    <div class="divider"></div>
-    <div class="text-center">
+    <div class="divider my-6">または</div>
+
+    <%= render "devise/shared/google_sign_in" %>
+
+    <div class="text-center mt-4">
       <%= link_to "すでにアカウントをお持ちの方はログインへ",
             new_session_path(resource_name),
             class: "text-sm hover:underline" %>
