@@ -1,0 +1,13 @@
+<h1>OpenAI疎通テスト</h1>
+
+<%= form_with url: advice_path, method: :post, local: true do %>
+  <%= submit_tag "OpenAIに問い合わせる" %>
+<% end %>
+
+<% if @reply.present? %>
+  <h2>結果</h2>
+
+  <pre>
+<%= @reply %>
+  </pre>
+<% end %>
