@@ -1,0 +1,9 @@
+<%= turbo_stream.replace "advice_result" do %>
+  <div class="mt-8 p-4 border rounded bg-gray-50">
+    <% if @error %>
+      <p class="text-error"><%= @result %></p>
+    <% else %>
+      <p class="text-base-content whitespace-pre-wrap"><%= @result %></p>
+    <% end %>
+  </div>
+<% end %>

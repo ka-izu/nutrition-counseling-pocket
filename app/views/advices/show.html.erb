@@ -1,13 +1,69 @@
-<h1>OpenAI疎通テスト</h1>
+<h1>クイックアドバイス</h1>
 
 <%= form_with url: advice_path, method: :post, local: true do %>
-  <%= submit_tag "OpenAIに問い合わせる" %>
+
+  <!-- 疾患 -->
+  <div class="mb-4">
+    <label class="block mb-1 font-medium">疾患名</label>
+    <%= select_tag :condition,
+      options_for_select([
+        "高血圧",
+        "糖尿病",
+        "脂質異常症",
+        "特になし"
+      ], params[:condition]),
+      class: "w-full border rounded px-3 py-2"
+    %>
+  </div>
+
+  <!-- 食生活 -->
+  <div class="mb-4">
+    <label class="block mb-1 font-medium">食生活</label>
+    <%= select_tag :diet,
+      options_for_select([
+        "野菜が少ない",
+        "炭水化物が多い",
+        "脂っこいものが多い",
+        "甘いものが多い",
+        "バランスよく食べている"
+      ]),
+      class: "w-full border rounded px-3 py-2"
+    %>
+  </div>
+
+  <!-- 生活習慣 -->
+  <div class="mb-4">
+    <label class="block mb-1 font-medium">生活習慣</label>
+    <%= select_tag :lifestyle,
+      options_for_select([
+        "外食が多い",
+        "自炊が多い",
+        "間食が多い",
+        "食事時間が不規則"
+      ], params[:lifestyle]),
+      class: "w-full border rounded px-3 py-2"
+    %>
+  </div>
+
+  <!-- 性格傾向 -->
+  <div class="mb-6">
+    <label class="block mb-1 font-medium">性格傾向</label>
+    <%= select_tag :personality,
+      options_for_select([
+        "めんどくさがり",
+        "完璧主義",
+        "気分屋",
+        "コツコツ型"
+      ], params[:personality]),
+      class: "w-full border rounded px-3 py-2"
+    %>
+  </div>
+
+  <%= submit_tag "アドバイスのヒントを確認",
+    class: "w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
+  %>
 <% end %>
 
-<% if @reply.present? %>
-  <h2>結果</h2>
-
-  <pre>
-<%= @reply %>
-  </pre>
-<% end %>
+<div id="advice_result">
+  <!-- AIリクエストの結果が表示される -->
+</div>

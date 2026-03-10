@@ -1,6 +1,5 @@
 class AdvicesController < ApplicationController
   def show
-    @reply = params[:reply]
   end
 
   def create
@@ -67,11 +66,11 @@ class AdvicesController < ApplicationController
         }
       )
 
-      reply = response.dig("output", 0, "content", 0, "text") || "AIの回答が取得できませんでした"
-
+      @result = response.dig("output", 0, "content", 0, "text") || "AIの回答が取得できませんでした"
     rescue StandardError => e
       Rails.logger.error "OpenAI Error: #{e.message}"
-      reply = "AIの生成中にエラーが発生しました"
+      @error = true
+      @result ||= "AIの生成中にエラーが発生しました"
     end
   end
 end
