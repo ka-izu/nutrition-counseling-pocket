@@ -22,15 +22,7 @@
     <% end %>
 
     <%= link_to advice_path,
-      class: "
-        btn btn-ghost
-        border-0 shadow-none
-        hover:bg-transparent
-        hover:text-primary
-        focus:outline-none focus:ring-0
-        active:bg-transparent
-        flex items-center gap-2
-      " do %>
+      class: nav_link_class(advice_path) do %>
       <%= render "shared/icons/light-bulb" %>
       <span>クイックアドバイス</span>
     <% end %>
