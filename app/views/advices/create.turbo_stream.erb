@@ -1,5 +1,5 @@
 <%= turbo_stream.replace "advice_result" do %>
-  <div class="mt-8 p-4 border rounded bg-gray-50">
+  <div id="advice_result" class="mt-8 p-4 border rounded bg-gray-50">
     <% if @error %>
       <p class="text-error"><%= @result %></p>
     <% else %>

@@ -4,7 +4,7 @@ class AdvicesController < ApplicationController
 
   def create
     @result = AdviceGenerator.generate(
-      condition: params[:condition],
+      disease: params[:disease],
       diet: params[:diet],
       lifestyle: params[:lifestyle],
       personality: params[:personality]

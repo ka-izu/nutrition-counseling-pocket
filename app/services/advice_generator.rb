@@ -1,5 +1,5 @@
 class AdviceGenerator
-  def self.generate(condition:, diet:, lifestyle:, personality:)
+  def self.generate(disease:, diet:, lifestyle:, personality:)
     client = Openai::Client.new
 
     system_prompt = <<~TEXT
@@ -35,15 +35,15 @@ class AdviceGenerator
       以下の患者情報をもとに、栄養アドバイスのヒントを作成してください。
 
       【疾患】
-      #{condition}
+      #{disease}
 
       【食生活】
-      #{diet}
+      #{format_list(diet)}
 
       【生活習慣】
-      #{lifestyle}
+      #{format_list(lifestyle)}
 
-      【性格傾向】
+      【食事療法に関する関心】
       #{personality}
     TEXT
 
@@ -51,5 +51,9 @@ class AdviceGenerator
       system_prompt: system_prompt,
       user_prompt: user_prompt
     )
+  end
+
+  def self.format_list(value)
+    Array(value).join("、")
   end
 end
