@@ -3,11 +3,18 @@ class AdvicesController < ApplicationController
   end
 
   def create
+    patient_context =
+      params[:patient_context]
+      .to_s
+      .squish
+      .truncate(200)
+
     @result = AdviceGenerator.generate(
       disease: params[:disease],
       diet: params[:diet],
       lifestyle: params[:lifestyle],
-      personality: params[:personality]
+      personality: params[:personality],
+      patient_context: patient_context
     )
 
   rescue StandardError => e

@@ -1,5 +1,5 @@
 class AdviceGenerator
-  def self.generate(disease:, diet:, lifestyle:, personality:)
+  def self.generate(disease:, diet:, lifestyle:, personality:, patient_context:)
     client = Openai::Client.new
 
     system_prompt = <<~TEXT
@@ -45,6 +45,9 @@ class AdviceGenerator
 
       【食事療法に関する関心】
       #{personality}
+
+      【アドバイスに必要な患者特性】
+      #{patient_context}
     TEXT
 
     client.generate(

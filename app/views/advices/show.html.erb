@@ -23,7 +23,7 @@
             >
 
             <div class="
-              btn btn-outline btn-secondary btn-sm rounded-sm
+              btn btn-outline btn-secondary btn-md rounded-sm
               w-full min-w-0
               h-auto min-h-0
               flex items-center justify-center
@@ -48,8 +48,8 @@
             name="disease"
             placeholder="その他の場合は疾患名を入力してください"
             class="
-              input input-secondary input-sm input-sm rounded-sm
-              h-auto min-h-0 w-full max-w-xs
+              input input-secondary input-md rounded-sm
+              h-auto min-h-0 w-full
               px-2 py-2"
           >
         </label>
@@ -93,7 +93,7 @@
             >
 
             <div class="
-              btn btn-outline btn-secondary btn-sm rounded-sm
+              btn btn-outline btn-secondary btn-md rounded-sm
               w-full min-w-0
               h-auto min-h-0
               flex items-center justify-center
@@ -145,7 +145,7 @@
             >
 
             <div class="
-              btn btn-outline btn-secondary btn-sm rounded-sm
+              btn btn-outline btn-secondary btn-md rounded-sm
               w-full min-w-0
               h-auto min-h-0
               flex items-center justify-center
@@ -187,7 +187,7 @@
             >
 
             <div class="
-              btn btn-outline btn-secondary btn-sm rounded-sm
+              btn btn-outline btn-secondary btn-md rounded-sm
               w-full min-w-0
               h-auto min-h-0
               flex items-center justify-center
@@ -204,6 +204,32 @@
             </div>
           </label>
         <% end %>
+      </div>
+    </div>
+
+    <!-- 患者特性(フリーテキスト) -->
+    <div class="mb-6">
+      <label class="block mb-2 font-medium">アドバイスに必要な患者特性</label>
+
+        <div data-controller="counter">
+          <input
+            type="text"
+            name="patient_context"
+            maxlength="200"
+            data-action="input->counter#update"
+            data-counter-target="input"
+            placeholder="（例）小麦アレルギーあり"
+            class="
+              input input-secondary input-md rounded-sm
+              h-auto min-h-0 w-full
+              px-2 py-2"
+          >
+
+          <p class="text-xs text-base-content/60 mt-1">
+            <span data-counter-target="count">0</span> / 200文字
+          </p>
+        </div>
+
       </div>
     </div>
 
