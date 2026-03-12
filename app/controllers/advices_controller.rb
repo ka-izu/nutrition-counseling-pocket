@@ -3,6 +3,10 @@ class AdvicesController < ApplicationController
   end
 
   def create
+    disease = [ params[:disease], params[:disease_other] ]
+                .reject(&:blank?)
+                .join("、")
+
     patient_context =
       params[:patient_context]
       .to_s
@@ -10,7 +14,7 @@ class AdvicesController < ApplicationController
       .truncate(200)
 
     @result = AdviceGenerator.generate(
-      disease: params[:disease],
+      disease: disease,
       diet: params[:diet],
       lifestyle: params[:lifestyle],
       personality: params[:personality],
