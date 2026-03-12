@@ -7,15 +7,19 @@
         疾患名 <span class="badge badge-error badge-sm">必須</span>
       </label>
 
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+      <div
+        class="grid grid-cols-2 md:grid-cols-4 gap-2"
+        data-controller="disease"
+      >
 
         <% ["糖尿病","高血圧","脂質異常症","高尿酸血症","骨粗しょう症","低栄養"].each do |disease| %>
           <label class="cursor-pointer">
             <input
-              type="radio"
+              type="checkbox"
               name="disease"
               value="<%= disease %>"
               class="peer hidden"
+              data-action="change->disease#toggle"
             >
 
             <div class="
@@ -163,19 +167,23 @@
       </div>
     </div>
 
-    <!-- 性格傾向 -->
+    <!-- 食事療法に関する関心 -->
     <div class="mb-6">
       <label class="block mb-2 font-medium">食事療法に関する関心</label>
 
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+      <div
+        class="grid grid-cols-2 md:grid-cols-4 gap-2"
+        data-controller="disease"
+      >
 
         <% ["やりたくない","これからやってみたい","半年未満の継続あり","半年以上の継続あり"].each do |personality| %>
           <label class="cursor-pointer">
             <input
-              type="radio"
+              type="checkbox"
               name="personality"
               value="<%= personality %>"
               class="peer hidden"
+              data-action="change->disease#toggle"
             >
 
             <div class="

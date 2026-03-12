@@ -7,6 +7,9 @@ import { application } from "./application"
 import CardLinkController from "./card_link_controller"
 application.register("card-link", CardLinkController)
 
+import DiseaseController from "./disease_controller"
+application.register("disease", DiseaseController)
+
 import FileInputController from "./file_input_controller"
 application.register("file-input", FileInputController)
 
