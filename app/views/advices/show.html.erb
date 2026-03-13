@@ -1,5 +1,9 @@
 <section class="mx-auto max-w-5xl px-6 my-16">
-  <%= form_with url: advice_path, method: :post, local: true do %>
+  <%= form_with url: advice_path, method: :post, local: true,
+      data: {
+        controller: "ai-loading",
+        action: "submit->ai-loading#start turbo:submit-end->ai-loading#finish"
+      } do %>
 
     <!-- 疾患 -->
     <div class="mb-6">
@@ -242,18 +246,20 @@
       </div>
     </div>
 
-  <p class="text-xs text-base-content/60 mt-2">
-    ※ 情報が多いほど、より具体的なアドバイスになります
-  </p>
+    <p class="text-xs text-base-content/60 mt-2">
+      ※ 情報が多いほど、より具体的なアドバイスになります
+    </p>
 
-    <%= submit_tag "アドバイスのヒントを確認",
-      class: "w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
-    %>
+    <%= button_tag type: "submit",
+      data: { ai_loading_target: "button" },
+      class: "btn btn-primary w-sm rounded-full flex items-center gap-2" do %>
+      アドバイスのヒントを確認する
+    <% end %>
 
-  <p class="text-xs text-base-content/60 mt-2">
-    ※ AIが患者情報をもとにアドバイスのヒントを生成します。<br>
-    ※ 最終的な判断は管理栄養士の専門的判断を優先してください。
-  </p>
+    <p class="text-xs text-base-content/60 mt-2">
+      ※ AIが患者情報をもとにアドバイスのヒントを生成します。<br>
+      ※ 最終的な判断は管理栄養士の専門的判断を優先してください。
+    </p>
   <% end %>
 
   <div id="advice_result">

@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import AiLoadingController from "./ai_loading_controller"
+application.register("ai-loading", AiLoadingController)
+
 import CardLinkController from "./card_link_controller"
 application.register("card-link", CardLinkController)
 
