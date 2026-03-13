@@ -3,7 +3,13 @@ class AdvicesController < ApplicationController
   end
 
   def create
-    disease = [ params[:disease], params[:disease_other] ]
+    disease_other =
+      params[:disease_other]
+        .to_s
+        .squish
+        .truncate(50)
+
+    disease = [ params[:disease], disease_other ]
                 .reject(&:blank?)
                 .join("、")
 

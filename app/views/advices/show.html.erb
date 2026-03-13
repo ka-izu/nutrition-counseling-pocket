@@ -42,16 +42,25 @@
         <% end %>
 
         <!-- その他 -->
-        <label class="cursor-pointer col-span-2 md:col-span-4 flex gap-2 items-center">
-          <input
-            type="text"
-            name="disease_other"
-            placeholder="その他の場合は疾患名を入力してください"
-            class="
-              input input-secondary input-md rounded-sm
-              h-auto min-h-0 w-full
-              px-2 py-2"
-          >
+        <label class="col-span-2 md:col-span-4 gap-2">
+          <div data-controller="counter">
+            <input
+              type="text"
+              name="disease_other"
+              maxlength="50"
+              data-action="input->counter#update"
+              data-counter-target="input"
+              placeholder="その他の場合は、疾患名を入力してください"
+              class="
+                input input-secondary input-md rounded-sm
+                h-auto min-h-0 w-full
+                px-2 py-2"
+            >
+
+            <p class="text-xs text-base-content/60 mt-1">
+              <span data-counter-target="count">0</span> / 50文字
+            </p>
+          </div>
         </label>
       </div>
     </div>
