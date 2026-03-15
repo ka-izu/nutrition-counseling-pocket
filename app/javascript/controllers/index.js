@@ -4,8 +4,17 @@
 
 import { application } from "./application"
 
+import AiLoadingController from "./ai_loading_controller"
+application.register("ai-loading", AiLoadingController)
+
 import CardLinkController from "./card_link_controller"
 application.register("card-link", CardLinkController)
+
+import CounterController from "./counter_controller"
+application.register("counter", CounterController)
+
+import DiseaseController from "./disease_controller"
+application.register("disease", DiseaseController)
 
 import FileInputController from "./file_input_controller"
 application.register("file-input", FileInputController)

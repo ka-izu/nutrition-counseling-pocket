@@ -21,18 +21,10 @@
       <span>指導ライブラリ</span>
     <% end %>
 
-    <%= link_to "#",
-      class: "
-        btn btn-ghost
-        border-0 shadow-none
-        hover:bg-transparent
-        hover:text-primary
-        focus:outline-none focus:ring-0
-        active:bg-transparent
-        flex items-center gap-2
-      " do %>
+    <%= link_to advice_path,
+      class: nav_link_class(advice_path) do %>
       <%= render "shared/icons/light-bulb" %>
-      <span>クイックアドバイス（準備中）</span>
+      <span>クイックアドバイス</span>
     <% end %>
   </div>
 

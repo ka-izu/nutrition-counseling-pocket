@@ -1,0 +1,11 @@
+<%= turbo_stream.replace "advice_result" do %>
+  <div id="advice_result" class="card bg-base-200 shadow-md mt-6">
+    <div class="card-body">
+      <% if @error %>
+        <p class="text-error"><%= @result %></p>
+      <% else %>
+        <p class="text-base-content whitespace-pre-wrap"><%= @result %></p>
+      <% end %>
+    </div>
+  </div>
+<% end %>
