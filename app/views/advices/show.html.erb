@@ -1,4 +1,13 @@
-<section class="mx-auto max-w-5xl px-6 my-16">
+<section class="mx-auto max-w-3xl px-6 my-16">
+<div class="mb-10 flex items-center gap-3">
+  <div class="text-2xl"><%= render "shared/icons/light-bulb" %></div>
+  <div>
+    <p class="text-sm text-base-content">
+      患者情報を入力すると、栄養指導のヒントをAIが提案します
+    </p>
+  </div>
+</div>
+
   <%= form_with url: advice_path, method: :post, local: true,
       data: {
         controller: "ai-loading",
@@ -7,9 +16,7 @@
 
     <!-- 疾患 -->
     <div class="mb-6">
-      <label class="block mb-2 font-medium">
-        疾患名 <span class="badge badge-error badge-sm">必須</span>
-      </label>
+      <label class="block mb-2 font-medium">疾患名</label>
 
       <div
         class="grid grid-cols-2 md:grid-cols-4 gap-2"
@@ -81,19 +88,17 @@
 
         <% [
           "野菜が少ない",
+          "食事バランスが偏りがち",
+          "揚げ物が多い",
+          "脂っこい料理が多い",
+          "甘いものをよく食べる",
+          "間食が多い",
+          "外食が多い",
+          "朝食を食べない",
+          "夕食が遅くなる",
+          "味付けは濃いめが好み",
           "炭水化物が多い",
-          "脂っこいものが多い",
-          "甘いものが多い",
-          "バランスよく食べているバランスよく食べているバランスよく食べているバランスよく食べている",
-          "野菜が少ない",
-          "炭水化物が多い",
-          "脂っこいものが多い",
-          "甘いものが多い",
-          "バランスよく食べている",
-          "野菜が少ない",
-          "炭水化物が多い",
-          "脂っこいものが多い",
-          "甘いものが多い",
+          "食事量が多い",
           "バランスよく食べている"
         ].each do |diet| %>
 
@@ -140,11 +145,14 @@
 
         <% [
           "運動習慣が少ない",
+          "定期的に運動している",
           "デスクワークが多い",
-          "活動量多め",
+          "活動量が多い",
           "不規則な生活リズム",
           "夜勤がある",
+          "睡眠時間が短い",
           "料理が苦手",
+          "外食に頼ることが多い",
           "お酒をよく飲む",
           "タバコを吸う"
         ].each do |lifestyle| %>
@@ -224,6 +232,10 @@
     <div class="mb-6">
       <label class="block mb-2 font-medium">アドバイスに必要な患者特性</label>
 
+        <p class="text-xs text-base-content/60 mb-2">
+          ※ 個人を特定できる情報は入力しないでください
+        </p>
+
         <div data-controller="counter">
           <input
             type="text"
@@ -231,7 +243,7 @@
             maxlength="200"
             data-action="input->counter#update"
             data-counter-target="input"
-            placeholder="（例）小麦アレルギーあり"
+            placeholder="（例）75歳、独居、塩分摂取が多い傾向"
             class="
               input input-secondary input-md rounded-sm
               h-auto min-h-0 w-full
@@ -246,19 +258,21 @@
       </div>
     </div>
 
-    <p class="text-xs text-base-content/60 mt-2">
-      ※ 情報が多いほど、より具体的なアドバイスになります
+    <p class="text-sm text-base-content/60 my-2 text-center">
+      情報が多いほど、より具体的なアドバイスを提供できます
     </p>
 
-    <%= button_tag type: "submit",
-      data: { ai_loading_target: "button" },
-      class: "btn btn-primary w-sm rounded-full flex items-center gap-2" do %>
-      アドバイスのヒントを確認する
-    <% end %>
+    <div class="flex justify-center">
+      <%= button_tag type: "submit",
+        data: { ai_loading_target: "button" },
+        class: "btn btn-primary w-sm rounded-full flex items-center gap-2" do %>
+        アドバイスのヒントを確認する
+      <% end %>
+    </div>
 
-    <p class="text-xs text-base-content/60 mt-2">
-      ※ AIが患者情報をもとにアドバイスのヒントを生成します。<br>
-      ※ 最終的な判断は管理栄養士の専門的判断を優先してください。
+    <p class="text-sm text-base-content/60 my-4 text-center">
+      ※ AIが患者情報をもとにアドバイスのヒントを生成します<br>
+      ※ 最終的な判断は管理栄養士の専門的判断を優先してください
     </p>
   <% end %>
 

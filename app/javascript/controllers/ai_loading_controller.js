@@ -8,7 +8,7 @@ export default class extends Controller {
     this.buttonTarget.disabled = true
 
     this.buttonTarget.innerHTML = `
-      <span class="loading loading-ring loading-sm"></span>
+      <span class="loading loading-ring loading-md"></span>
       アドバイスを生成しています...
     `
 
