@@ -59,4 +59,6 @@ class AdviceGenerator
   def self.format_list(value)
     Array(value).join("、")
   end
+
+  private_class_method :format_list
 end

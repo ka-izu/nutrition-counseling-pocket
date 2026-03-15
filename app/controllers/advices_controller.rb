@@ -7,17 +7,17 @@ class AdvicesController < ApplicationController
       params[:disease_other]
         .to_s
         .squish
-        .truncate(50)
+        .truncate(50, omission: "")
 
     disease = [ params[:disease], disease_other ]
-                .reject(&:blank?)
+                .filter_map(&:presence)
                 .join("、")
 
     patient_context =
       params[:patient_context]
       .to_s
       .squish
-      .truncate(200)
+      .truncate(200, omission: "")
 
     @result = AdviceGenerator.generate(
       disease: disease,
