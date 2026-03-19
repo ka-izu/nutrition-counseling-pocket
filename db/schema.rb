@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_03_04_020028) do
+ActiveRecord::Schema[7.2].define(version: 2026_03_19_010317) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -50,6 +50,17 @@ ActiveRecord::Schema[7.2].define(version: 2026_03_04_020028) do
     t.datetime "updated_at", null: false
     t.index ["slug"], name: "index_diseases_on_slug", unique: true
     t.index ["user_id"], name: "index_diseases_on_user_id"
+  end
+
+  create_table "knowledge_memos", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "content"
+    t.bigint "disease_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["disease_id"], name: "index_knowledge_memos_on_disease_id"
+    t.index ["user_id"], name: "index_knowledge_memos_on_user_id"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -107,6 +118,8 @@ ActiveRecord::Schema[7.2].define(version: 2026_03_04_020028) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "diseases", "users"
+  add_foreign_key "knowledge_memos", "diseases"
+  add_foreign_key "knowledge_memos", "users"
   add_foreign_key "tags", "users"
   add_foreign_key "teaching_material_diseases", "diseases"
   add_foreign_key "teaching_material_diseases", "teaching_materials"
