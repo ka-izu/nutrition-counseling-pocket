@@ -1,0 +1,22 @@
+<turbo-frame id="memo_detail">
+  <div class="card bg-base-100 rounded-sm shadow">
+    <div class="card-body">
+      <% if memo %>
+        <h2 class="text-lg font-bold mb-2">
+          <%= memo.title %>
+        </h2>
+
+        <p class="whitespace-pre-wrap text-sm">
+          <%= memo.content %>
+        </p>
+
+        <div class="mt-4">
+          <%= link_to "編集", "#",
+              class: "btn btn-sm btn-outline" %>
+        </div>
+      <% else %>
+        <p class="text-gray-400">メモを選択してください</p>
+      <% end %>
+    </div>
+  </div>
+</turbo-frame>
