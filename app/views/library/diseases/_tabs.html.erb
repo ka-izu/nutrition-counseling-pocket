@@ -7,8 +7,8 @@
       role: "tab",
       class: "tab #{controller_name == 'teaching_materials' ? 'tab-active bg-white' : ''}" %>
 
-    <%= link_to "ナレッジメモ（準備中）",
-      "#",
+    <%= link_to "ナレッジメモ",
+      library_disease_knowledge_memos_path(@disease),
       role: "tab",
       class: "tab #{controller_name == 'knowledge_memos' ? 'tab-active bg-white' : ''}" %>
   </div>

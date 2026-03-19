@@ -5,6 +5,7 @@ class Disease < ApplicationRecord
 
   has_many :teaching_material_diseases, dependent: :destroy
   has_many :teaching_materials, through: :teaching_material_diseases
+  has_many :knowledge_memos, dependent: :destroy
 
   before_validation :generate_slug, on: :create
 

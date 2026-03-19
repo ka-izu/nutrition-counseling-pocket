@@ -36,8 +36,10 @@
           <% @teaching_materials.each do |tm| %>
             <div
               class="card bg-base-100 shadow-sm flex flex-col h-full
-                    hover:shadow-md hover:bg-base-200
-                    transition cursor-pointer"
+                    transition duration-150 ease-in-out
+                    hover:shadow-md hover:bg-base-200 hover:scale-102
+                    active:scale-98
+                    cursor-pointer"
               data-controller="card-link"
               data-card-link-url-value="<%= url_for(tm.document) %>"
               data-card-link-target-value="<%= tm.pdf? ? '_blank' : '_self' %>"
