@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :teaching_materials, dependent: :destroy
   has_many :diseases, dependent: :destroy
   has_many :tags, dependent: :destroy
+  has_many :knowledge_memos, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 255 }
   validates :uid, uniqueness: { scope: :provider }, if: :provider?
