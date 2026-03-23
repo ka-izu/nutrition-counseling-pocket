@@ -3,6 +3,7 @@ ja:
     models:
       teaching_material: 指導ツール
       disease: 疾患
+      knowledge_memo: ナレッジメモ
     attributes:
       teaching_material:
         title: タイトル
@@ -12,6 +13,9 @@ ja:
         tag_names: タグ
       disease:
         name: 疾患名
+      knowledge_memo:
+        title: タイトル
+        content: 内容
     errors:
       models:
         teaching_material:

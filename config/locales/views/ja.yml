@@ -55,3 +55,6 @@ ja:
     edit: 編集
     delete: 削除
     delete_confirm: 削除しますか？
+  time:
+    formats:
+      short: "%m/%d %H:%M"
