@@ -25,4 +25,20 @@ RSpec.describe KnowledgeMemo, type: :model do
       expect(memo.user).to be_present
     end
   end
+
+  describe ".owned_by" do
+    let(:user) { create(:user) }
+    let(:other_user) { create(:user) }
+
+    let!(:own_memo1) { create(:knowledge_memo, user: user) }
+    let!(:own_memo2) { create(:knowledge_memo, user: user) }
+    let!(:other_memo) { create(:knowledge_memo, user: other_user) }
+
+    it "指定したユーザーのメモのみ取得する" do
+      result = KnowledgeMemo.owned_by(user)
+
+      expect(result).to include(own_memo1, own_memo2)
+      expect(result).not_to include(other_memo)
+    end
+  end
 end
