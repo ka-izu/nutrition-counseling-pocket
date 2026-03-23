@@ -2,6 +2,7 @@ class Library::KnowledgeMemosController < Library::BaseDiseaseController
   def index
     @knowledge_memos =
       @disease.knowledge_memos
+              .owned_by(current_user)
               .includes(:user)
               .order(updated_at: :desc)
     @selected_memo = @knowledge_memos.first
