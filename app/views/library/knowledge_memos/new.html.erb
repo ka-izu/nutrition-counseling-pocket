@@ -1,0 +1,11 @@
+<section class="mx-auto max-w-5xl px-6 my-16">
+  <div class="max-w-xl mx-auto">
+    <h1 class="text-xl font-bold mb-6">
+      新しいメモ（<%= @disease.name %>）
+    </h1>
+
+    <%= render "form",
+          knowledge_memo: @knowledge_memo,
+          form_url: library_disease_knowledge_memos_path(@disease) %>
+  </div>
+</section>
