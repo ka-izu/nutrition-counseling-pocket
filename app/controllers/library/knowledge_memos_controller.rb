@@ -49,9 +49,9 @@ class Library::KnowledgeMemosController < Library::BaseDiseaseController
   end
 
   def show
-    @selected_memo = @disease.knowledge_memos.find(params[:id])
-
-    render partial: "detail", locals: { memo: @selected_memo }
+    @selected_memo = @disease.knowledge_memos
+                         .where(user: current_user)
+                         .find(params[:id])
   end
 
   private
