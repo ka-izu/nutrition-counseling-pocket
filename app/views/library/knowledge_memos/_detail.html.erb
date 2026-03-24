@@ -11,7 +11,9 @@
         </p>
 
         <div class="mt-4">
-          <%= link_to "編集", "#",
+          <%= link_to "編集",
+              edit_library_disease_knowledge_memo_path(@disease, @selected_memo),
+              data: { turbo_frame: "memo_detail" },
               class: "btn btn-sm btn-outline" %>
         </div>
       <% else %>

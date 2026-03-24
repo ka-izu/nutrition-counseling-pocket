@@ -1,0 +1,21 @@
+<turbo-frame id="memo_detail">
+  <%= form_with model: @memo,
+      url: library_disease_knowledge_memo_path(@memo.disease, @memo),
+      method: :patch do |f| %>
+
+    <div class="space-y-2">
+      <%= f.text_field :title, class: "input input-bordered w-full" %>
+      <%= f.text_area :content, class: "textarea textarea-bordered w-full" %>
+
+      <div class="flex gap-2">
+        <%= f.submit "保存", class: "btn btn-primary btn-sm" %>
+
+        <%= link_to "キャンセル",
+            library_disease_knowledge_memos_path(@memo.disease, memo_id: @memo.id),
+            data: { turbo_frame: "memo_detail" },
+            class: "btn btn-sm" %>
+      </div>
+    </div>
+
+  <% end %>
+</turbo-frame>

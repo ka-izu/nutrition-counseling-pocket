@@ -26,6 +26,28 @@ class Library::KnowledgeMemosController < Library::BaseDiseaseController
     end
   end
 
+  def edit
+    @memo = KnowledgeMemo.find(params[:id])
+  end
+
+  def update
+    @memo = @disease.knowledge_memos.find(params[:id])
+
+    if @memo.update(knowledge_memo_params)
+      @selected_memo = @memo
+
+      respond_to do |format|
+        format.turbo_stream
+        format.html do
+          redirect_to library_disease_knowledge_memos_path(@disease, memo_id: @memo.id),
+                      notice: t("defaults.flash_message.updated", item: KnowledgeMemo.model_name.human)
+        end
+      end
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   def show
     @selected_memo = @disease.knowledge_memos.find(params[:id])
 
