@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       resources :teaching_materials, except: %i[show] do
         get :autocomplete, on: :collection
       end
-      resources :knowledge_memos, only: %i[index new create show]
+      resources :knowledge_memos, only: %i[index new create show edit update]
     end
   end
 
