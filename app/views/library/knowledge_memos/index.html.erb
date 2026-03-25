@@ -36,29 +36,29 @@
 %>
     </div>
 
-<div class="flex gap-6">
-  <% if @knowledge_memos.any? %>
-    <div class="w-1/2 space-y-2">
-      <% @knowledge_memos.each do |memo| %>
-        <div id="memo_<%= memo.id %>">
-          <%= render "memo_card", memo: memo %>
+    <div class="flex gap-6">
+      <% if @knowledge_memos.any? %>
+        <div class="w-1/2 space-y-2">
+          <% @knowledge_memos.each do |memo| %>
+            <div id="memo_<%= memo.id %>">
+              <%= render "memo_card", memo: memo %>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="w-1/2 pl-4">
+          <turbo-frame id="memo_detail">
+            <%= render "detail", memo: @selected_memo %>
+          </turbo-frame>
+        </div>
+      <% else %>
+        <!-- 登録されたメモがない場合 -->
+        <div class="w-full">
+          <p class="text-base-content/60 text-center py-12">
+            登録されたメモはまだありません
+          </p>
         </div>
       <% end %>
     </div>
-
-    <div class="w-1/2 pl-4">
-      <turbo-frame id="memo_detail">
-        <%= render "detail", memo: @selected_memo %>
-      </turbo-frame>
-    </div>
-  <% else %>
-    <!-- 登録されたメモがない場合 -->
-    <div class="w-full">
-      <p class="text-base-content/60 text-center py-12">
-        登録されたメモはまだありません
-      </p>
-    </div>
-  <% end %>
-</div>
   <% end %>
 </section>
