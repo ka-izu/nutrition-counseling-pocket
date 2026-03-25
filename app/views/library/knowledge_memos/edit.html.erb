@@ -2,6 +2,16 @@
   <div class="card bg-base-100 shadow rounded-sm">
     <div class="card-body">
 
+      <% if @knowledge_memo.errors.any? %>
+          <div class="mb-6 border border-l-4 rounded-sm border-error bg-error/10 p-4 text-error">
+            <ul class="list-disc pl-5">
+              <% @knowledge_memo.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+
       <%= form_with model: @knowledge_memo,
           url: library_disease_knowledge_memo_path(@knowledge_memo.disease, @knowledge_memo),
           method: :patch,
