@@ -5,6 +5,7 @@ class Library::KnowledgeMemosController < Library::BaseDiseaseController
               .owned_by(current_user)
               .includes(:user)
               .order(updated_at: :desc)
+
     @selected_memo = @knowledge_memos.first
   end
 
@@ -27,19 +28,21 @@ class Library::KnowledgeMemosController < Library::BaseDiseaseController
   end
 
   def edit
-    @memo = KnowledgeMemo.find(params[:id])
+    @knowledge_memo =
+      current_user.knowledge_memos.find(params[:id])
   end
 
   def update
-    @memo = @disease.knowledge_memos.find(params[:id])
+    @knowledge_memo =
+      current_user.knowledge_memos.find(params[:id])
 
-    if @memo.update(knowledge_memo_params)
-      @selected_memo = @memo
+    if @knowledge_memo.update(knowledge_memo_params)
+      @selected_memo = @knowledge_memo
 
       respond_to do |format|
         format.turbo_stream
         format.html do
-          redirect_to library_disease_knowledge_memos_path(@disease, memo_id: @memo.id),
+          redirect_to library_disease_knowledge_memos_path(@disease, memo_id: @knowledge_memo.id),
                       notice: t("defaults.flash_message.updated", item: KnowledgeMemo.model_name.human)
         end
       end
