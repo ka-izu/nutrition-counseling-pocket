@@ -2,8 +2,8 @@
   <div class="card bg-base-100 shadow rounded-sm">
     <div class="card-body">
 
-      <%= form_with model: @memo,
-          url: library_disease_knowledge_memo_path(@memo.disease, @memo),
+      <%= form_with model: @knowledge_memo,
+          url: library_disease_knowledge_memo_path(@knowledge_memo.disease, @knowledge_memo),
           method: :patch,
           class: "space-y-4" do |f| %>
 
@@ -31,7 +31,7 @@
 
           <!-- 左：キャンセル -->
           <%= link_to "キャンセル",
-              library_disease_knowledge_memo_path(@memo.disease, @memo),
+              library_disease_knowledge_memo_path(@knowledge_memo.disease, @knowledge_memo),
               data: { turbo_frame: "memo_detail" },
               class: "btn btn-ghost btn-sm" %>
 

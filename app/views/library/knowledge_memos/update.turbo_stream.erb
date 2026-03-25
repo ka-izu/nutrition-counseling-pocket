@@ -1,8 +1,8 @@
 <%= turbo_stream.replace "memo_detail" do %>
-  <%= render "detail", memo: @memo %>
+  <%= render "detail", memo: @knowledge_memo %>
 <% end %>
 
-<%= turbo_stream.replace "memo_#{@memo.id}" do %>
+<%= turbo_stream.replace "memo_#{@knowledge_memo.id}" do %>
   <%= render "memo_card",
-      memo: @memo %>
+      memo: @knowledge_memo %>
 <% end %>
