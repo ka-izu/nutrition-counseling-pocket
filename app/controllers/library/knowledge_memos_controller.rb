@@ -5,6 +5,7 @@ class Library::KnowledgeMemosController < Library::BaseDiseaseController
               .owned_by(current_user)
               .includes(:user)
               .order(updated_at: :desc)
+
     @selected_memo = @knowledge_memos.first
   end
 
@@ -26,10 +27,34 @@ class Library::KnowledgeMemosController < Library::BaseDiseaseController
     end
   end
 
-  def show
-    @selected_memo = @disease.knowledge_memos.find(params[:id])
+  def edit
+    @knowledge_memo =
+      current_user.knowledge_memos.find(params[:id])
+  end
 
-    render partial: "detail", locals: { memo: @selected_memo }
+  def update
+    @knowledge_memo =
+      current_user.knowledge_memos.find(params[:id])
+
+    if @knowledge_memo.update(knowledge_memo_params)
+      @selected_memo = @knowledge_memo
+
+      respond_to do |format|
+        format.turbo_stream
+        format.html do
+          redirect_to library_disease_knowledge_memos_path(@disease, memo_id: @knowledge_memo.id),
+                      notice: t("defaults.flash_message.updated", item: KnowledgeMemo.model_name.human)
+        end
+      end
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def show
+    @selected_memo = @disease.knowledge_memos
+                         .where(user: current_user)
+                         .find(params[:id])
   end
 
   private

@@ -108,4 +108,74 @@ RSpec.describe "Library::KnowledgeMemos", type: :request do
       end
     end
   end
+
+  describe "PATCH /library/diseases/:disease_id/knowledge_memos/:id" do
+    let!(:memo) { create(:knowledge_memo, user: user, disease: disease, title: "旧タイトル") }
+
+    before do
+      sign_in user
+    end
+
+    context "正常系" do
+      let(:valid_params) do
+        {
+          knowledge_memo: {
+            title: "新タイトル",
+            content: "更新内容"
+          }
+        }
+      end
+
+      it "メモが更新されること" do
+        patch library_disease_knowledge_memo_path(disease, memo), params: valid_params
+
+        expect(memo.reload.title).to eq("新タイトル")
+        expect(memo.content).to eq("更新内容")
+      end
+
+      it "一覧画面へリダイレクトされること" do
+        patch library_disease_knowledge_memo_path(disease, memo), params: valid_params
+
+        expect(response).to redirect_to(
+          library_disease_knowledge_memos_path(disease, memo_id: memo.id)
+        )
+      end
+    end
+
+    context "異常系" do
+      let(:invalid_params) do
+        {
+          knowledge_memo: {
+            title: "",
+            content: "更新内容"
+          }
+        }
+      end
+
+      it "メモが更新されないこと" do
+        patch library_disease_knowledge_memo_path(disease, memo), params: invalid_params
+
+        expect(memo.reload.title).to eq("旧タイトル")
+      end
+
+      it "editページが再表示されること" do
+        patch library_disease_knowledge_memo_path(disease, memo), params: invalid_params
+
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
+
+    context "権限系" do
+      let(:other_user) { create(:user) }
+      let!(:other_memo) { create(:knowledge_memo, user: other_user, disease: disease) }
+
+      it "他ユーザーのメモは更新できないこと" do
+        patch library_disease_knowledge_memo_path(disease, other_memo), params: {
+          knowledge_memo: { title: "不正更新" }
+        }
+
+        expect(response).to have_http_status(:not_found)
+      end
+    end
+  end
 end
