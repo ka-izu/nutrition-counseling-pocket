@@ -2,22 +2,51 @@
   <div class="card bg-base-100 rounded-sm shadow">
     <div class="card-body">
       <% if memo %>
-        <h2 class="text-lg font-bold mb-2">
-          <%= memo.title %>
-        </h2>
+        <!-- タイトル + 操作 -->
+        <div class="flex items-start justify-between gap-2 mb-2">
+          <h2 class="text-lg font-bold">
+            <%= memo.title %>
+          </h2>
 
+          <!-- 三点メニュー -->
+          <div class="dropdown dropdown-end">
+            <label tabindex="0" class="btn btn-ghost btn-sm btn-circle">
+              <%= render "shared/icons/ellipsis-vertical" %>
+            </label>
+
+            <ul tabindex="0"
+                class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-32 z-[1]">
+
+              <!-- 編集 -->
+              <li>
+                <%= link_to edit_library_disease_knowledge_memo_path(@disease, memo),
+                      data: { turbo_frame: "memo_detail" } do %>
+                  <%= render "shared/icons/pencil" %>
+                  編集
+                <% end %>
+              </li>
+
+              <!-- 削除 -->
+              <li>
+                <%= link_to library_disease_knowledge_memo_path(@disease, memo),
+                      data: {
+                        turbo_method: :delete,
+                        turbo_confirm: "削除しますか？"
+                      },
+                      class: "text-error" do %>
+                  <%= render "shared/icons/trash" %>
+                  削除
+                <% end %>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+
+        <!-- 内容 -->
         <p class="whitespace-pre-wrap text-sm">
           <%= memo.content %>
         </p>
-
-        <div class="mt-4">
-          <%= link_to "編集",
-              edit_library_disease_knowledge_memo_path(@disease, @selected_memo),
-              data: { turbo_frame: "memo_detail" },
-              class: "btn btn-sm btn-outline" %>
-        </div>
-      <% else %>
-        <p class="text-gray-400">メモを選択してください</p>
       <% end %>
     </div>
   </div>
