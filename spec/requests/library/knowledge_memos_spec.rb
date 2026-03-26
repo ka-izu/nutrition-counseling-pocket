@@ -178,4 +178,40 @@ RSpec.describe "Library::KnowledgeMemos", type: :request do
       end
     end
   end
+
+  describe "DELETE /library/diseases/:disease_id/knowledge_memos/:id" do
+    let!(:memo_to_delete) { create(:knowledge_memo, user: user, disease: disease, title: "削除対象") }
+    let!(:other_memo) { create(:knowledge_memo, user: user, disease: disease, title: "残るメモ") }
+
+    context "未ログイン" do
+      it "ログイン画面へリダイレクトされること" do
+        delete library_disease_knowledge_memo_path(disease, memo_to_delete)
+        expect(response).to redirect_to(new_user_session_path)
+      end
+    end
+
+    context "ログイン済み" do
+      before { sign_in user }
+
+      it "メモが削除されること" do
+        expect {
+          delete library_disease_knowledge_memo_path(disease, memo_to_delete)
+        }.to change(KnowledgeMemo, :count).by(-1)
+
+        expect(response).to redirect_to(library_disease_knowledge_memos_path(disease))
+        follow_redirect!
+        expect(response.body).not_to include("削除対象")
+        expect(response.body).to include("残るメモ")
+      end
+
+      it "他ユーザーのメモは削除できないこと" do
+        other_user = create(:user)
+        other_memo = create(:knowledge_memo, user: other_user, disease: disease, title: "他人のメモ")
+
+        delete library_disease_knowledge_memo_path(disease, other_memo)
+
+        expect(response).to have_http_status(:not_found)
+      end
+    end
+  end
 end
