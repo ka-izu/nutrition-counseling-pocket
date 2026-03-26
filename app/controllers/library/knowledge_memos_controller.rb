@@ -57,6 +57,36 @@ class Library::KnowledgeMemosController < Library::BaseDiseaseController
                          .find(params[:id])
   end
 
+  def destroy
+    @knowledge_memo =
+      current_user.knowledge_memos.find(params[:id])
+
+    @knowledge_memo.destroy
+
+    # 一覧を再取得
+    @knowledge_memos =
+      @disease.knowledge_memos
+              .owned_by(current_user)
+              .order(updated_at: :desc)
+
+    # 削除後に表示するメモを取得
+    @next_memo =
+      @disease.knowledge_memos
+        .owned_by(current_user)
+        .order(updated_at: :desc)
+        .first
+
+    respond_to do |format|
+      format.turbo_stream
+      format.html do
+        redirect_to library_disease_knowledge_memos_path,
+                    status: :see_other,
+                    notice: t("defaults.flash_message.deleted",
+                    item: KnowledgeMemo.model_name.human)
+      end
+    end
+  end
+
   private
 
   def knowledge_memo_params

@@ -1,0 +1,5 @@
+<%= turbo_stream.replace "knowledge_memos" do %>
+  <%= render "knowledge_memos",
+        knowledge_memos: @knowledge_memos,
+        selected_memo: @next_memo %>
+<% end %>
