@@ -4,17 +4,13 @@
     <!-- 左：一覧 -->
     <div class="w-1/2 space-y-2">
       <% knowledge_memos.each do |memo| %>
-        <div id="memo_<%= memo.id %>">
-          <%= render "memo_card", memo: memo %>
-        </div>
+        <%= render "memo_card", memo: memo %>
       <% end %>
     </div>
 
     <!-- 右：詳細 -->
     <div class="w-1/2 pl-4">
-      <turbo-frame id="memo_detail">
-        <%= render "detail", memo: selected_memo %>
-      </turbo-frame>
+      <%= render "detail", memo: selected_memo %>
     </div>
 
   </div>
