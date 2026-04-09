@@ -19,6 +19,14 @@ class AccountsController < ApplicationController
     end
   end
 
+  def destroy
+    @account = current_user
+    @account.destroy!
+
+    redirect_to root_path,
+      notice: t("defaults.flash_message.deleted", item: "アカウント")
+  end
+
   private
 
   def account_params

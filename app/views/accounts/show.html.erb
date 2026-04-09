@@ -24,12 +24,13 @@
             class: "btn btn-primary w-40 text-center" %>
 
       <!-- 削除 -->
-      <%= button_to "アカウント削除",
+      <%= link_to "アカウント削除",
             account_path,
-            method: :delete,
-            data: { confirm: "本当に削除しますか？この操作は取り消せません。" },
+            data: {
+              turbo_method: :delete,
+              turbo_confirm: "アカウントを削除しますか？削除すると、すべてのデータが完全に失われ、復元することはできません。"
+            },
             class: "text-error text-sm hover:underline bg-transparent border-0 p-0 cursor-pointer" %>
-
     </div>
   </div>
 </div>
