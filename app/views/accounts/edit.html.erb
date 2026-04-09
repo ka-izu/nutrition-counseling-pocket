@@ -1,0 +1,61 @@
+<div class="max-w-xl mx-auto mt-10">
+  <h1 class="text-base-content text-2xl font-bold mb-6">アカウント編集</h1>
+
+  <%= form_with model: current_user,
+                url: account_path,
+                method: :patch,
+                local: true do |f| %>
+
+    <% if current_user.errors.any? %>
+      <div class="mb-6 border border-l-4 rounded-sm border-error bg-error/10 p-4 text-error">
+        <ul class="list-disc pl-5">
+          <% current_user.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="p-6 space-y-6">
+
+      <!-- ユーザー名 -->
+      <div>
+        <%= f.label :name,
+              "ユーザー名",
+              class: "text-sm text-base-content/70" %>
+
+        <%= f.text_field :name,
+              class: "w-full mt-1 text-lg font-medium text-base-content
+                      border border-base-300 rounded-sm p-2
+                      focus:outline-none focus:ring-2 focus:ring-primary" %>
+      </div>
+
+      <!-- メールアドレス -->
+      <div>
+        <%= f.label :email,
+              "メールアドレス",
+              class: "text-sm text-base-content/70" %>
+
+        <%= f.email_field :email,
+              class: "w-full mt-1 text-lg font-medium text-base-content
+                      border border-base-300 rounded-sm p-2
+                      focus:outline-none focus:ring-2 focus:ring-primary" %>
+      </div>
+
+      <!-- アクション -->
+      <div class="flex flex-col items-center gap-4 pt-8">
+
+        <!-- 保存 -->
+        <%= f.submit "更新する",
+              class: "btn btn-primary w-40 text-center" %>
+
+        <!-- キャンセル -->
+        <%= link_to "キャンセル",
+              account_path,
+              class: "text-sm text-base-content/70 hover:underline" %>
+
+      </div>
+
+    </div>
+  <% end %>
+</div>
