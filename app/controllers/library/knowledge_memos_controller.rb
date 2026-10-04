@@ -39,6 +39,12 @@ class Library::KnowledgeMemosController < Library::BaseDiseaseController
     if @knowledge_memo.update(knowledge_memo_params)
       @selected_memo = @knowledge_memo
 
+      @knowledge_memos =
+        @disease.knowledge_memos
+                .owned_by(current_user)
+                .includes(:user)
+                .order(updated_at: :desc)
+
       respond_to do |format|
         format.turbo_stream
         format.html do
