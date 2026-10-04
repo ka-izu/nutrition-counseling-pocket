@@ -1,3 +1,5 @@
+<%
+=begin %>
 <%= turbo_stream.replace "memo_detail" do %>
   <%= render "detail", memo: @knowledge_memo %>
 <% end %>
@@ -5,4 +7,14 @@
 <%= turbo_stream.replace "memo_#{@knowledge_memo.id}" do %>
   <%= render "memo_card",
       memo: @knowledge_memo %>
+<% end %>
+<%
+=end %>
+
+<%= turbo_stream.replace "knowledge_memos_content" do %>
+  <div id="knowledge_memos_content">
+    <%= render "knowledge_memos",
+          knowledge_memos: @knowledge_memos,
+          selected_memo: @selected_memo %>
+  </div>
 <% end %>

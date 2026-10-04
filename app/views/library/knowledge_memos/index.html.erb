@@ -37,9 +37,11 @@
     </div>
 
     <turbo-frame id="knowledge_memos">
-      <%= render "knowledge_memos",
-            knowledge_memos: @knowledge_memos,
-            selected_memo: @selected_memo %>
+      <div id="knowledge_memos_content">
+        <%= render "knowledge_memos",
+              knowledge_memos: @knowledge_memos,
+              selected_memo: @selected_memo %>
+      </div>
     </turbo-frame>
   <% end %>
 </section>
