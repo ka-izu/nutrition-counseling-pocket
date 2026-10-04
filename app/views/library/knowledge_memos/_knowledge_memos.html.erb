@@ -2,7 +2,9 @@
   <div class="flex gap-6">
 
     <!-- 左：一覧 -->
-    <div class="w-1/2 space-y-2">
+    <div
+      class="w-1/2 space-y-2"
+      data-controller="knowledge-memo">
       <% knowledge_memos.each do |memo| %>
         <%= render "memo_card",
               memo: memo,
