@@ -22,6 +22,9 @@ application.register("file-input", FileInputController)
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
+import KnowledgeMemoController from "./knowledge_memo_controller"
+application.register("knowledge-memo", KnowledgeMemoController)
+
 import MultiSelectController from "./multi_select_controller"
 application.register("multi-select", MultiSelectController)
 
