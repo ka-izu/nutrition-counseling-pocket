@@ -1,5 +1,7 @@
-<%= turbo_stream.replace "knowledge_memos" do %>
-  <%= render "knowledge_memos",
-        knowledge_memos: @knowledge_memos,
-        selected_memo: @next_memo %>
+<%= turbo_stream.replace "knowledge_memos_content" do %>
+  <div id="knowledge_memos_content">
+    <%= render "knowledge_memos",
+          knowledge_memos: @knowledge_memos,
+          selected_memo: @next_memo %>
+  </div>
 <% end %>
