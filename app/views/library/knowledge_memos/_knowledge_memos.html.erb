@@ -4,7 +4,9 @@
     <!-- 左：一覧 -->
     <div class="w-1/2 space-y-2">
       <% knowledge_memos.each do |memo| %>
-        <%= render "memo_card", memo: memo %>
+        <%= render "memo_card",
+              memo: memo,
+              selected_memo: selected_memo %>
       <% end %>
     </div>
 
